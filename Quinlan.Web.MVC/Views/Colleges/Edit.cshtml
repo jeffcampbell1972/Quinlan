@@ -1,0 +1,29 @@
+﻿@model CollegeEdit
+
+@{
+    ViewData["Title"] = @Model.DisplayName;
+}
+
+<section id="bodySection">
+    <h1>@Model.DisplayName</h1>
+</section>
+
+<form asp-action="Edit" asp-controller="Colleges">
+
+    <div>
+        <input type="hidden" asp-for="@Model.CollegeVM.Identifier" />
+    </div>
+    <div>
+        <label asp-for="@Model.CollegeVM.Name"></label>
+        <input asp-for="@Model.CollegeVM.Name" />
+        <span asp-validation-for="@Model.CollegeVM.Name"></span>
+    </div>
+    <div>
+        <label asp-for="@Model.CollegeVM.Nickname"></label>
+        <input asp-for="@Model.CollegeVM.Nickname" />
+        <span asp-validation-for="@Model.CollegeVM.Nickname"></span>
+    </div>
+
+    <button type="submit">Save</button>
+</form>
+

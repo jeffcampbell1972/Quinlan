@@ -1,0 +1,136 @@
+﻿@model MagazineIndex
+
+@{
+    ViewData["Title"] = @Model.DisplayName;
+}
+
+
+
+<section id="bodySection">
+    <h1>@Model.DisplayName</h1>
+</section>
+
+<section id="filterSection">
+
+    <form asp-controller="Magazines" asp-action="Index">
+
+
+        <section id="column1" style="float:left; width:30%">
+
+            <section id="personFilter">
+                <label style="float:left">Person</label>
+                <select style="float:left" asp-for="@Model.FilterOptions.PersonId" asp-items="@Model.People">
+                </select>
+
+                <div style="clear:both"></div>
+            </section>
+
+        </section>
+
+        <section id="column2" style="float:left; width:30%">
+
+            <section id="hofFilter">
+                <input id="hofCheckBox" type="checkbox" style="float:left;" asp-for="@Model.FilterOptions.HOFFlag" />
+                <label id="hofLabel" for="hofCheckBox" style="float:left;">Hall of Famers Only</label>
+
+                <div style="clear: both"></div>
+            </section>
+
+            <section id="heismanFilter">
+                <input id="heismanCheckBox" type="checkbox" style="float:left" asp-for="@Model.FilterOptions.HeismanFlag" />
+                <label id="heismanLabel" for="heismanCheckBox" style="float: left">Heisman Winners Only</label>
+
+                <div style="clear:both"></div>
+            </section>
+
+            <section id="notableFilter">
+                <input id="notableCheckBox" type="checkbox" style="float:left" asp-for="@Model.FilterOptions.NotableFlag" />
+                <label id="notableLabel" for="notableCheckBox" style="float:left">Notables Only</label>
+
+                <div style="clear:both"></div>
+            </section>
+
+        </section>
+
+        <section id="column3" style="float:left; width:10%">
+            <nav id="buttons">
+                <button type="submit">Search</button>
+            </nav>
+        </section>
+
+
+        <div style="clear:both"></div>
+
+
+    </form>
+
+</section>
+
+<hr />
+
+
+<section id="bodySection" style="width: 100%">
+
+    <table style="font-size:9pt; width:100%">
+
+        <tr>
+            <th class="YearColumn ColumnHeader">
+                Year
+            </th>
+            <th class="CompanyColumn ColumnHeader">
+                Company
+            </th>
+            <th class="PersonColumn ColumnHeader">
+                Person
+            </th>
+            <th class="HOFColumn ColumnHeader">
+                HOF
+            </th>
+            <th class="CostColumn ColumnHeader">
+                Cost
+            </th>
+            <th class="ValueColumn ColumnHeader">
+                Value
+            </th>
+        </tr>
+
+        @foreach (var magazine in Model.Magazines)
+        {
+            <tr>
+                <td class="YearColumn">
+                    @magazine.Year
+                </td>
+                <td class="CompanyColumn">
+                    @magazine.PublisherName
+                </td>
+                <td class="PersonColumn">
+                    @if (magazine.PersonId > 0)
+                    {
+                    <a asp-area="" asp-controller="People" asp-action="Details" asp-route-id=@magazine.PersonId>@magazine.PersonName</a>
+                    }
+                    else
+                    {
+                        <div>&nbsp;</div>
+                    }
+                </td>
+                <td class="HOFColumn">
+                    @if (magazine.HOF == "HOF")
+                    {
+                        @magazine.HOF
+                    }
+                    else
+                    {
+                        <div>&nbsp;</div>
+                    }
+                </td>
+                <td class="CostColumn">
+                    @magazine.Cost.ToString("c")
+                </td>
+                <td class="ValueColumn">
+                    @magazine.Value.ToString("c")
+                </td>
+            </tr>
+        }
+    </table>
+
+</section>

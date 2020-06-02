@@ -1,0 +1,99 @@
+﻿@model TeamIndex
+
+@{
+    ViewData["Title"] = "Team Finder Page";
+}
+
+<section id="bodySection">
+    <h1>Team Finder</h1>
+</section>
+
+<section id="filterSection">
+
+    <form asp-controller="Teams" asp-action="Index">
+
+        <section id="column1" style="float:left; width:40%">
+
+            <section id="sportFilter">
+                <label style="float:left">Sport</label>
+                <select style="float:left" asp-for="@Model.TeamFilterOptionsViewModel.SportId" asp-items="@Model.Sports">
+                </select>
+
+                <div style="clear:both"></div>
+            </section>
+
+            <section id="leagueFilter">
+                <label style="float:left">League</label>
+                <select style="float:left" asp-for="@Model.TeamFilterOptionsViewModel.LeagueId" asp-items="@Model.Leagues">
+                </select>
+
+                <div style="clear:both"></div>
+            </section>
+
+        </section>
+
+
+        <section id="column1" style="float:left; width:25%;">
+
+            <section id="notableFilter">
+                <input id="notableCheckBox" type="checkbox" style="float:left" asp-for="@Model.TeamFilterOptionsViewModel.NotableFlag" />
+                <label id="notableLabel" for="notableCheckBox" style="float:left">Notables Only</label>
+
+                <div style="clear:both"></div>
+            </section>
+
+        </section>
+
+        <section id="column4" style="float:left; width:10%">
+            <nav id="buttons">
+                <button type="submit">Search</button>
+            </nav>
+        </section>
+
+        <div style="clear:both"></div>
+
+    </form>
+
+</section>
+
+<hr />
+
+<section id="bodySection" style="width: 100%">
+
+    <table style="font-size:9pt; width:100%">
+
+        <tr>
+            <th class="ColumnHeader">
+                Name
+            </th>
+            <th class="ColumnHeader">
+                Sport
+            </th>
+            <th class="ColumnHeader">
+                League
+            </th>
+            <th class="ColumnHeader">
+                College (if applicable)
+            </th>
+        </tr>
+
+        @foreach (var team in Model.Teams)
+        {
+    <tr>
+        <td style="width:20%">
+            <a asp-area="" asp-controller="Teams" asp-action="Details" asp-route-id=@team.Id>@team.Name</a>
+        </td>
+        <td style="width:20%">
+            @team.SportName
+        </td>
+        <td style="width:20%">
+            @team.LeagueName
+        </td>
+        <td style="width:20%">
+            <a asp-area="" asp-controller="Colleges" asp-action="Details" asp-route-id=@team.CollegeId>@team.CollegeName</a>
+        </td>
+    </tr>
+        }
+    </table>
+
+</section>

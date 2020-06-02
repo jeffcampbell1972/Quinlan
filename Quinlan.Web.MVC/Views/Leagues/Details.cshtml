@@ -1,0 +1,42 @@
+﻿@model LeagueDetails
+
+@{
+    ViewData["Title"] = @Model.DisplayName;
+}
+
+
+
+<section id="headerSection">
+    <h1>@Model.DisplayName</h1>
+</section>
+
+<section id="filterSection">
+
+    <form asp-controller="Leagues" asp-action="Details" asp-route-id="@Model.Id">
+
+        @await Html.PartialAsync("~/Views/Shared/_FilterOptions.cshtml", @Model.FilterOptionsVM)
+
+    </form>
+
+</section>
+
+<hr />
+
+<section id="totalsSection">
+
+    @await Html.PartialAsync("~/Views/Shared/_SearchTotals.cshtml", @Model.SearchTotalsVM)
+
+</section>
+
+<hr />
+
+<section id="bodySection">
+
+    <ul style="font-size:9pt">
+        @foreach (var card in Model.Cards)
+        {
+            <li><a asp-area="" asp-controller="Collectibles" asp-action="Details" asp-route-id=@card.Id>@card.Identifier</a></li>
+        }
+    </ul>
+
+</section>

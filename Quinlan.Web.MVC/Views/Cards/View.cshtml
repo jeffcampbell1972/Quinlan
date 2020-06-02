@@ -1,0 +1,242 @@
+﻿@model CardView
+
+@{
+    ViewData["Title"] = @Model.DisplayName;
+}
+
+    <section id="headerSection">
+        <h1>@Model.DisplayName</h1>
+    </section>
+
+<hr />
+
+<section id="bodySection" style="width:100%">
+
+    <section id="leftBodySection" style="width:50%; float:left">
+
+        <section id="year">
+            <label class="FormLabel" asp-for="@Model.Year"></label>
+            <div class="FormValue">@Model.Year</div>
+
+            <div class="Clear"></div>
+        </section>
+
+        <section id="company">
+            <label class="FormLabel" asp-for="@Model.Company"></label>
+            <div class="FormValue">@Model.Company</div>
+
+            <div style="clear:both"></div>
+        </section>
+
+        <section id="sport">
+            <label class="FormLabel" asp-for="@Model.SportName"></label>
+            <div class="FormValue">@Model.SportName</div>
+
+            <div style="clear:both"></div>
+        </section>
+        <section id="league">
+            <label class="FormLabel" asp-for="@Model.LeagueName"></label>
+            <div class="FormValue">@Model.LeagueName</div>
+
+            <div style="clear:both"></div>
+        </section>
+
+        <section id="cardNumber">
+            <label class="FormLabel" asp-for="@Model.CardNumber"></label>
+            <div class="FormValue">@Model.CardNumber</div>
+
+            <div style="clear:both"></div>
+        </section>
+
+        <section id="cardType">
+            <label class="FormLabel" asp-for="@Model.CardType"></label>
+            <div class="FormValue">@Model.CardType</div>
+
+            <div style="clear:both"></div>
+        </section>
+
+        <br />
+
+        <section id="person">
+            <label class="FormLabel" asp-for="@Model.PersonName"></label>
+            <a class="FormValue" asp-area="" asp-controller="People" asp-action="Details" asp-route-id=@Model.PersonId>@Model.PersonName</a>
+
+            <div style="clear:both"></div>
+        </section>
+
+        <section id="team">
+            <label class="FormLabel" asp-for="@Model.TeamName"></label>
+            <a class="FormValue" asp-area="" asp-controller="Teams" asp-action="Details" asp-route-id=@Model.TeamId>@Model.TeamName</a>
+
+            <div style="clear:both"></div>
+        </section>
+
+        <br />
+
+        <section id="attributes">
+            <label class="FormLabel" asp-for="@Model.Attributes"></label>
+            <div class="FormValue">
+
+                <ul>
+                    @foreach (var itm in Model.Attributes)
+                    {
+                        <li>@itm</li>
+                    }
+                </ul>
+            </div>
+
+            <div style="clear:both"></div>
+        </section>
+
+        <br />
+
+        <section id="grade">
+            <label class="FormLabel" asp-for="@Model.Grade"></label>
+            <div class="FormValue">
+
+                <div class="FormValue">@Model.Grade</div>
+            </div>
+
+            <div style="clear:both"></div>
+        </section>
+
+        <br />
+
+        <section id="cost">
+            <label class="FormLabel" asp-for="@Model.FormattedCost"></label>
+            <div class="FormValue">@Model.FormattedCost</div>
+
+            <div style="clear:both"></div>
+        </section>
+        <section id="value">
+            <label class="FormLabel" asp-for="@Model.FormattedValue"></label>
+            <div class="FormValue">@Model.FormattedValue</div>
+
+            <div style="clear:both"></div>
+        </section>
+
+
+    </section>
+
+    <section id="rightBodySection" style="width:50%; float:left">
+
+        <section id="importSubjectType">
+            <label class="FormLabel" asp-for="@Model.ImportSubjectType"></label>
+            <div class="FormValue">@Model.ImportSubjectType</div>
+
+            <div style="clear:both"></div>
+        </section>
+        <section id="importLastName">
+            <label class="FormLabel" asp-for="@Model.ImportLastName"></label>
+            <div class="FormValue">@Model.ImportLastName</div>
+
+            <div style="clear:both"></div>
+        </section>
+        <section id="importFirstName">
+            <label class="FormLabel" asp-for="@Model.ImportFirstName"></label>
+            <div class="FormValue">@Model.ImportFirstName</div>
+
+            <div style="clear:both"></div>
+        </section>
+        <section id="importYear">
+            <label class="FormLabel" asp-for="@Model.ImportYear"></label>
+            <div class="FormValue">@Model.ImportYear</div>
+
+            <div style="clear:both"></div>
+        </section>
+        <section id="importCompany">
+            <label class="FormLabel" asp-for="@Model.ImportCompany"></label>
+            <div class="FormValue">@Model.ImportCompany</div>
+
+            <div style="clear:both"></div>
+        </section>
+        <section id="importCardNumber">
+            <label class="FormLabel" asp-for="@Model.ImportCardNumber"></label>
+            <div class="FormValue">@Model.ImportCardNumber</div>
+
+            <div style="clear:both"></div>
+        </section>
+        <section id="importDescription">
+            <label class="FormLabel" asp-for="@Model.ImportDescription"></label>
+            <div class="FormValue">@Model.ImportDescription</div>
+
+            <div style="clear:both"></div>
+        </section>
+        <section id="importTeam">
+            <label class="FormLabel" asp-for="@Model.ImportTeam"></label>
+            <div class="FormValue">@Model.ImportTeam</div>
+
+            <div style="clear:both"></div>
+        </section>
+        <section id="importBeckett">
+            <label class="FormLabel" asp-for="@Model.ImportBeckett"></label>
+            <div class="FormValue">@Model.ImportBeckett</div>
+
+            <div style="clear:both"></div>
+        </section>
+        <section id="importValue">
+            <label class="FormLabel" asp-for="@Model.ImportValue"></label>
+            <div class="FormValue">@Model.ImportValue</div>
+
+            <div style="clear:both"></div>
+        </section>
+        <section id="importX1">
+            <label class="FormLabel" asp-for="@Model.ImportX1"></label>
+            <div class="FormValue">@Model.ImportX1</div>
+
+            <div style="clear:both"></div>
+        </section>
+        <section id="importInStock">
+            <label class="FormLabel" asp-for="@Model.ImportInStock"></label>
+            <div class="FormValue">@Model.ImportInStock</div>
+
+            <div style="clear:both"></div>
+        </section>
+        <section id="importSport">
+            <label class="FormLabel" asp-for="@Model.ImportSport"></label>
+            <div class="FormValue">@Model.ImportSport</div>
+
+            <div style="clear:both"></div>
+        </section>
+        <section id="importX2">
+            <label class="FormLabel" asp-for="@Model.ImportX2"></label>
+            <div class="FormValue">@Model.ImportX2</div>
+
+            <div style="clear:both"></div>
+        </section>
+        <section id="importGrade">
+            <label class="FormLabel" asp-for="@Model.ImportGrade"></label>
+            <div class="FormValue">@Model.ImportGrade</div>
+
+            <div style="clear:both"></div>
+        </section>
+        <section id="importX3">
+            <label class="FormLabel" asp-for="@Model.ImportX3"></label>
+            <div class="FormValue">@Model.ImportX3</div>
+
+            <div style="clear:both"></div>
+        </section>
+        <section id="importType">
+            <label class="FormLabel" asp-for="@Model.ImportType"></label>
+            <div class="FormValue">@Model.ImportType</div>
+
+            <div style="clear:both"></div>
+        </section>
+        <section id="importLeague">
+            <label class="FormLabel" asp-for="@Model.ImportLeague"></label>
+            <div class="FormValue">@Model.ImportLeague</div>
+
+            <div style="clear:both"></div>
+        </section>
+        <section id="importNotableFlag">
+            <label class="FormLabel" asp-for="@Model.ImportNotableFlag"></label>
+            <div class="FormValue">@Model.ImportNotableFlag</div>
+
+            <div style="clear:both"></div>
+        </section>
+
+    </section>
+
+    <div style="clear:both"></div>
+</section>
+

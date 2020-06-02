@@ -1,0 +1,56 @@
+﻿@model TeamEdit
+
+@{
+    ViewData["Title"] = @Model.DisplayName;
+}
+
+<section id="bodySection">
+    <h1>@Model.DisplayName</h1>
+</section>
+
+<form asp-action="Edit" asp-controller="Teams">
+
+    <div>
+        <input type="hidden" asp-for="@Model.TeamVM.Identifier" />
+    </div>
+    <div>
+        <label asp-for="@Model.TeamVM.City"></label>
+        <input asp-for="@Model.TeamVM.City" />
+        <span asp-validation-for="@Model.TeamVM.City"></span>
+    </div>
+    <div>
+        <label asp-for="@Model.TeamVM.Nickname"></label>
+        <input asp-for="@Model.TeamVM.Nickname" />
+        <span asp-validation-for="@Model.TeamVM.Nickname"></span>
+    </div>
+
+    <br />
+
+    <div>
+        <label asp-for="@Model.TeamVM.SportId"></label>
+        <select asp-for="@Model.TeamVM.SportId" asp-items="@Model.Sports"></select>
+        <span asp-validation-for="@Model.TeamVM.SportId"></span>
+    </div>
+    <div>
+        <label asp-for="@Model.TeamVM.LeagueId"></label>
+        <select asp-for="@Model.TeamVM.LeagueId" asp-items="@Model.Leagues"></select>
+        <span asp-validation-for="@Model.TeamVM.LeagueId"></span>
+    </div>
+    <div>
+        <label asp-for="@Model.TeamVM.CollegeId"></label>
+        <select asp-for="@Model.TeamVM.CollegeId" asp-items="@Model.Colleges"></select>
+        <span asp-validation-for="@Model.TeamVM.CollegeId"></span>
+    </div>
+
+    <br />
+
+    <div>
+        <label asp-for="@Model.TeamVM.NotableFlag"></label>
+        <input asp-for="@Model.TeamVM.NotableFlag" />
+        <span asp-validation-for="@Model.TeamVM.NotableFlag"></span>
+    </div>
+
+    <br />
+    <button type="submit">Save</button>
+</form>
+

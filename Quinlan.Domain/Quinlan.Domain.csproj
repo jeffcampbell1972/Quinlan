@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Models\CollectibleType.cs" />
+    <Compile Remove="Models\FilterOptions.cs" />
+    <Compile Remove="Services\CollectibleService.cs" />
+    <Compile Remove="Services\CollectibleTypeService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Quinlan.Data\Quinlan.Data.csproj" />
+  </ItemGroup>
+
+</Project>

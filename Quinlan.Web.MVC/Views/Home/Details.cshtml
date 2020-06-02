@@ -1,0 +1,101 @@
+﻿@model Summary
+
+@{
+    ViewData["Title"] = "Summary Page";
+}
+
+<section id="headerSection">
+    <h1>Data Summary</h1>
+</section>
+<hr />
+
+<div id="bodySection" style="width: 60%">
+   
+    <table style="width:100%">
+        <tr>
+            <th id="description" class="SummaryDescriptionColumn">&nbsp;</th>
+            <th id="count" class="SummaryCountColumn">Count</th>
+            <th id="cost" class="SummaryCostColumn">Total Cost</th>
+            <th id="value" class="SummaryValueColumn">Total Value</th>
+        </tr>
+        <tr>
+            <td id="description" class="SummaryDescriptionColumn">@Model.DbTotals.Description</td>
+            <td id="count" class="SummaryCountColumn">@Model.DbTotals.NumItems.ToString("n0")</td>
+            <td id="cost" class="SummaryCostColumn">@Model.DbTotals.TotalCost.ToString("c")</td>
+            <td id="value" class="SummaryValueColumn">@Model.DbTotals.TotalValue.ToString("c")</td>
+        </tr>
+
+        <tr>
+            <td>&nbsp;</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+
+        @foreach (var summary in Model.BaseballCardSubTotals)
+        {
+            <tr>
+                <td id="description" class="SummaryDescriptionColumn">@summary.Description</td>
+                <td id="count" class="SummaryCountColumn">@summary.NumItems.ToString("n0")</td>
+                <td id="cost" class="SummaryCostColumn">@summary.TotalCost.ToString("c")</td>
+                <td id="value" class="SummaryValueColumn">@summary.TotalValue.ToString("c")</td>
+            </tr>
+        }
+
+        <tr>
+            <td>&nbsp;</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+
+        @foreach (var summary in Model.BasketballCardSubTotals)
+        {
+            <tr>
+                <td id="description" class="SummaryDescriptionColumn">@summary.Description</td>
+                <td id="count" class="SummaryCountColumn">@summary.NumItems.ToString("n0")</td>
+                <td id="cost" class="SummaryCostColumn">@summary.TotalCost.ToString("c")</td>
+                <td id="value" class="SummaryValueColumn">@summary.TotalValue.ToString("c")</td>
+
+            </tr>
+        }
+
+        <tr>
+            <td>&nbsp;</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+
+        @foreach (var summary in Model.FootballCardSubTotals)
+        {
+            <tr>
+                <td id="description" class="SummaryDescriptionColumn">@summary.Description</td>
+                <td id="count" class="SummaryCountColumn">@summary.NumItems.ToString("n0")</td>
+                <td id="cost" class="SummaryCostColumn">@summary.TotalCost.ToString("c")</td>
+                <td id="value" class="SummaryValueColumn">@summary.TotalValue.ToString("c")</td>
+
+            </tr>
+        }
+
+        <tr>
+            <td>&nbsp;</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+
+        @foreach (var summary in Model.HockeyCardSubTotals)
+        {
+            <tr>
+                <td id="description" class="SummaryDescriptionColumn">@summary.Description</td>
+                <td id="count" class="SummaryCountColumn">@summary.NumItems.ToString("n0")</td>
+                <td id="cost" class="SummaryCostColumn">@summary.TotalCost.ToString("c")</td>
+                <td id="value" class="SummaryValueColumn">@summary.TotalValue.ToString("c")</td>
+
+            </tr>
+        }
+    </table>
+
+    
+</div>

@@ -1,0 +1,67 @@
+﻿@model PersonEdit
+
+@{
+    ViewData["Title"] = @Model.DisplayName;
+}
+
+<section id="bodySection">
+    <h1>@Model.DisplayName</h1>
+</section>
+
+<form asp-action="Edit" asp-controller="People">
+
+    <div>
+        <input type="hidden" asp-for="@Model.PersonVM.Identifier" />
+    </div>
+    <div>
+        <label asp-for="@Model.PersonVM.FirstName"></label>
+        <input asp-for="@Model.PersonVM.FirstName" />
+        <span asp-validation-for="@Model.PersonVM.FirstName"></span>
+    </div>
+    <div>
+        <label asp-for="@Model.PersonVM.MiddleName"></label>
+        <input asp-for="@Model.PersonVM.MiddleName" />
+        <span asp-validation-for="@Model.PersonVM.MiddleName"></span>
+    </div>
+    <div>
+        <label asp-for="@Model.PersonVM.LastName"></label>
+        <input asp-for="@Model.PersonVM.LastName" />
+        <span asp-validation-for="@Model.PersonVM.LastName"></span>
+    </div>
+    <div>
+        <label asp-for="@Model.PersonVM.Suffix"></label>
+        <input asp-for="@Model.PersonVM.Suffix" />
+        <span asp-validation-for="@Model.PersonVM.Suffix"></span>
+    </div>
+    <br />
+    <div>
+        <label asp-for="@Model.PersonVM.CollegeId"></label>
+        <select asp-for="@Model.PersonVM.CollegeId" asp-items="@Model.Colleges"></select>
+        <span asp-validation-for="@Model.PersonVM.CollegeId"></span>
+    </div>
+    <br />
+    <div>
+        <label asp-for="@Model.PersonVM.SportIds"></label>
+        <select asp-for="@Model.PersonVM.SportIds" multiple size="5" asp-items="@Model.Sports" style="min-width:200px"></select>
+        <span asp-validation-for="@Model.PersonVM.SportIds"></span>
+    </div>
+    <br />
+    <div>
+        <label asp-for="@Model.PersonVM.HOFFlag"></label>
+        <input asp-for="@Model.PersonVM.HOFFlag" />
+        <span asp-validation-for="@Model.PersonVM.HOFFlag"></span>
+    </div>
+    <div>
+        <label asp-for="@Model.PersonVM.HeismanFlag"></label>
+        <input asp-for="@Model.PersonVM.HeismanFlag" />
+        <span asp-validation-for="@Model.PersonVM.HeismanFlag"></span>
+    </div>
+    <div>
+        <label asp-for="@Model.PersonVM.NotableFlag"></label>
+        <input asp-for="@Model.PersonVM.NotableFlag" />
+        <span asp-validation-for="@Model.PersonVM.NotableFlag"></span>
+    </div>
+    <br />
+    <button type="submit">Save</button>
+</form>
+

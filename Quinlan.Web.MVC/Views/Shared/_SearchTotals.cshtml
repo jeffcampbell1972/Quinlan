@@ -1,0 +1,20 @@
+﻿@model SearchTotalsViewModel
+
+    <section id="totalsSection" style="width:100%">
+
+        <div id="numCards" style="width:33%; float: left">
+            # of Cards:
+            @Model.NumCollectibles.ToString("n0")
+        </div>
+        <div id="numCards" style="width:33%; float: left; text-align:center">
+            Total Cost:
+            @Model.TotalCost.ToString("c")
+        </div>
+        <div id="numCards" style="width:33%; float: left; text-align:right">
+            Total Value:
+            @Model.TotalValue.ToString("c")
+        </div>
+
+        <div style="clear:both"></div>
+
+    </section>

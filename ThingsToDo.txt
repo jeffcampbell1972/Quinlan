@@ -1,0 +1,118 @@
+
+---------------------------------------------------------------------------------
+Development - application architecture has been identified and most of the
+              functionality has been completed at the DATA and DOMAIN levels.
+
+              The MVC website is about 85% complete.  
+
+              The SPA website is just getting started with API and corresponding
+              Angular component working to retreive and display data.
+---------------------------------------------------------------------------------
+
+Quinlan.Data
+------------
+
+1) Add functionality to preclude deletion of imported data. 
+
+Quinlan.Domain
+--------------
+
+1) Move domain models to sub-folders named Data, FilterOptions, and Search
+
+Quinlan.MVC
+-----------
+
+1) Add and Edit Cards
+2) Add Products and attach Cards to Product
+3) Move all styles to the CSS file
+4) Add logging to all controllers
+
+Quinlan.SPA
+-----------
+
+1) Develop API for the single page application
+2) Develop Angular components
+
+
+
+
+
+
+---------------------------------------------------------------------------------
+Unit Testing - much of the unit testing has been identified but only about 
+               a third of those tests have been written.  The remaining work
+               is itemized below.
+---------------------------------------------------------------------------------
+
+Quinlan.Data.Test
+-----------------
+
+Data Services
+
+    CollectibleDataServiceTests => insert/update/delete tests
+    CollectDataServiceTests
+    PersonDataServiceTests
+    ProductDataServiceTests
+    TeamDataServiceTests
+
+Query Services
+
+    ProductQueryServiceTest => all tests must be written
+
+Quinlan.Domain.Test
+-------------------
+
+CRUD Services
+
+    CardServiceTests
+    CollegeServiceTests
+    FigurineServiceTests       
+    MagazineServiceTests       
+    PersonServiceTests   
+    ProduceServiceTest
+    ProductSearchServiceTest
+    TeamServiceTest
+
+Search Services      
+
+    CardSearchServiceTests     
+    FigurineSearchServiceTests 
+    MagazineSearchServiceTests 
+    PersonSearchServiceTests   
+    TeamSearchServiceTests     
+
+Helper Services
+
+    QueryFilterServiceTests    
+
+Quinlan.MVC.Test
+----------------
+
+Form Services
+
+    PersonFormServiceTests
+
+Helper Services
+
+    MvcServiceTests
+    SearchFilterTests
+
+Page Services
+
+    CardDetailsServiceTests   
+    FigurineIndexServiceTests 
+    HomePageServiceTests     
+    LeagueDetailsServiceTests 
+    MagazineIndexServiceTests 
+    PersonDetailsServiceTests 
+    PersonEditServiceTests
+    PersonIndexServiceTests  
+    SportDetailsServiceTests  
+    TeamDetailsServiceTests   
+    TeamIndexServiceTests    
+
+
+
+
+
+

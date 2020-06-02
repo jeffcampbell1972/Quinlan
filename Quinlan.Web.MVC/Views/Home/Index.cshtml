@@ -1,0 +1,47 @@
+﻿@model Home
+
+@{
+    ViewData["Title"] = @Model.Title;
+}
+
+    <section id="IntroductionSection">
+        <h1 class="display-4">@Model.Header</h1>
+        <p>
+            @Model.WelcomeMessage  
+        </p>
+        <br />
+    </section>
+
+@if (@Model.IsSeeded == false)
+{
+    <div>Not Seeded.</div>
+}
+else
+{
+<section id="bodySection">
+
+    <nav style="float:left; width:50%">
+        <header>
+            Q's Best Cards
+        </header>
+        <ul>
+            @foreach (var card in Model.NotableCards)
+            {
+                <li><a asp-area="" asp-controller="Cards" asp-action="View" asp-route-id=@card.Id>@card.Title</a></li>
+            }
+        </ul>
+    </nav>
+    <nav style="float:left; width:50%">
+        <header>
+            Q's Favorite Teams
+        </header>
+        <ul>
+            @foreach (var team in Model.NotableTeams)
+            {
+                <li><a asp-area="" asp-controller="Teams" asp-action="Details" asp-route-id=@team.Id>@team.Name</a></li>
+            }
+        </ul>
+    </nav>
+
+</section>
+}

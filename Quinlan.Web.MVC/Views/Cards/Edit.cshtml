@@ -1,0 +1,26 @@
+﻿@model CardEdit
+
+@{
+    ViewData["Title"] = @Model.DisplayName;
+}
+
+<section id="bodySection">
+    <h1>@Model.DisplayName</h1>
+</section>
+
+<form asp-action="Edit" asp-controller="Cards">
+
+    <div>
+        <input type="hidden" asp-for="@Model.CardVM.Identifier" />
+    </div>
+    <div>
+        <label asp-for="@Model.CardVM.PersonId"></label>
+        <input asp-for="@Model.CardVM.PersonId" />
+        <span asp-validation-for="@Model.CardVM.PersonId"></span>
+    </div>
+    <br />
+
+
+    <button type="submit">Save</button>
+</form>
+

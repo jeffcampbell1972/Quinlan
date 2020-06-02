@@ -1,0 +1,132 @@
+﻿@model PersonIndex
+
+@{
+    ViewData["Title"] = "People Finder Page";
+}
+
+<section id="bodySection">
+    <h1>People Finder</h1>
+</section>
+
+<section id="filterSection">
+
+    <form asp-controller="People" asp-action="Index">
+
+        <section id="column1" style="float:left; width:50%">
+
+            <section id="sportFilter">
+                <label style="float:left">Sport</label>
+                <select style="float:left" asp-for="@Model.PersonFilterOptionsViewModel.SportId" asp-items="@Model.Sports">
+                </select>
+
+                <div style="clear:both"></div>
+            </section>
+
+            <section id="leagueFilter">
+                <label style="float:left">League</label>
+                <select style="float:left" asp-for="@Model.PersonFilterOptionsViewModel.LeagueId" asp-items="@Model.Leagues">
+                </select>
+
+                <div style="clear:both"></div>
+            </section>
+
+            <section id="teamFilter">
+                <label style="float:left">Team</label>
+                <select style="float:left" asp-for="@Model.PersonFilterOptionsViewModel.TeamId" asp-items="@Model.Teams">
+                </select>
+
+                <div style="clear:both"></div>
+            </section>
+
+        </section>
+
+        <section id="column1" style="float:left; width:25%;">
+
+            <section id="hofFilter">
+                <input id="hofCheckBox" type="checkbox" style="float:left;" asp-for="@Model.PersonFilterOptionsViewModel.HOFFlag" />
+                <label id="hofLabel" for="hofCheckBox" style="float:left;">Hall of Famers Only</label>
+
+                <div style="clear: both"></div>
+            </section>
+
+            <section id="heismanFilter">
+                <input id="heismanCheckBox" type="checkbox" style="float:left" asp-for="@Model.PersonFilterOptionsViewModel.HeismanFlag" />
+                <label id="heismanLabel" for="heismanCheckBox" style="float: left">Heisman Winners Only</label>
+
+                <div style="clear:both"></div>
+            </section>
+
+            <section id="notableFilter">
+                <input id="notableCheckBox" type="checkbox" style="float:left" asp-for="@Model.PersonFilterOptionsViewModel.NotableFlag" />
+                <label id="notableLabel" for="notableCheckBox" style="float:left">Notables Only</label>
+
+                <div style="clear:both"></div>
+            </section>
+
+        </section>
+
+        <section id="column4" style="float:left; width:10%">
+            <nav id="buttons">
+                <button type="submit">Search</button>
+            </nav>
+        </section>
+
+        <div style="clear:both"></div>
+
+    </form>
+
+</section>
+
+<hr />
+
+<section id="bodySection" style="width: 100%">
+
+    <table style="font-size:9pt; width:100%">
+
+        <tr>
+            <th class="ColumnHeader">
+                Name
+            </th>
+            <th class="ColumnHeader">
+                College
+            </th>
+            <th class="ColumnHeader">
+                Sport
+            </th>
+            <th class="ColumnHeader">
+                HOF
+            </th>
+            <th class="ColumnHeader">
+                Heisman
+            </th>
+            <th class="ColumnHeader">
+                Notable
+            </th>
+        </tr>
+
+        @foreach (var person in Model.People)
+        {
+        <tr>
+            <td style="width:20%">
+                <a asp-area="" asp-controller="People" asp-action="Details" asp-route-id=@person.Id>@person.Name</a>
+            </td>
+            <td style="width:20%">
+                <a asp-area="" asp-controller="Colleges" asp-action="Details" asp-route-id=@person.CollegeId>@person.CollegeName</a>
+            </td>
+            <td>
+                @person.SportNames
+            </td>
+            <td style="width:10%">
+                @person.HOFFlag
+            </td>
+            <td style="width:10%">
+                @person.HeismanFlag
+            </td>
+            <td style="width:10%">
+                @person.NotableFlag
+            </td>
+        </tr>
+        }
+    </table>
+
+</section>
