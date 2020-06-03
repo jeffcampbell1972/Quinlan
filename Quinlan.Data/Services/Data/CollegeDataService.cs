@@ -55,6 +55,10 @@ namespace Quinlan.Data.Services
             {
                 throw new InvalidIdException("Id not found in Colleges.");
             }
+            else if (collegeData.ImportCollege != null)
+            {
+                throw new InvalidDeleteException("Cannot delete imported college");
+            }
             _qDb.Colleges.Remove(collegeData);
             _qDb.SaveChanges();
         }

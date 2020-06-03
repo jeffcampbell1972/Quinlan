@@ -67,6 +67,12 @@ namespace Quinlan.Data.Services
             {
                 throw new InvalidIdException("Id not found in Collectibles.");
             }
+            else if (collectibleData.ImportCollectible != null)
+            {
+                throw new InvalidDeleteException("Cannot delete imported collectible");
+            }
+
+
             _qDb.Collectibles.Remove(collectibleData);
             _qDb.SaveChanges();
         }

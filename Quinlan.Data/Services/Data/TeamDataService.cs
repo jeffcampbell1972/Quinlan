@@ -59,6 +59,10 @@ namespace Quinlan.Data.Services
             {
                 throw new InvalidIdException("Id not found in Teams.");
             }
+            else if (teamData.ImportTeam != null)
+            {
+                throw new InvalidDeleteException("Cannot delete imported team");
+            }
             _qDb.Teams.Remove(teamData);
             _qDb.SaveChanges();
         }

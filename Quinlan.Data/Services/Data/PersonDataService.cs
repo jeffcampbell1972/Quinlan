@@ -57,6 +57,11 @@ namespace Quinlan.Data.Services
             {
                 throw new InvalidIdException("Id not found in People.");
             }
+            else if (personData.ImportPerson != null)
+            {
+                throw new InvalidDeleteException("Cannot delete imported person");
+            }
+
             _qDb.People.Remove(personData);
             _qDb.SaveChanges();
         }

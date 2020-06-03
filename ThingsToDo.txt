@@ -12,20 +12,58 @@ Development - application architecture has been identified and most of the
 Quinlan.Data
 ------------
 
-1) Add functionality to preclude deletion of imported data. 
+
 
 Quinlan.Domain
 --------------
 
-1) Move domain models to sub-folders named Data, FilterOptions, and Search
+
 
 Quinlan.MVC
 -----------
 
-1) Add and Edit Cards
-2) Add Products and attach Cards to Product
-3) Move all styles to the CSS file
-4) Add logging to all controllers
+Research
+
+- How does the built-in logger work?  Where are log files written? 
+  Must add logging to each method in each controller once understood.
+
+Controllers
+
+    ProductsController
+
+Binding Models
+
+    ProductViewModel
+
+ListItem Models
+
+    ProductListItemViewModel
+
+Page VMs
+
+    ProductDetails
+    ProductEdit
+
+Form Services
+
+    CardEditService (incomplete)
+    ProductFormService
+
+Page Services
+
+    ProductDetailsService
+    ProductEditService
+ 
+ Views
+
+    Cards
+
+    - Edit
+
+    Products
+
+    - Details
+    - Edit
 
 Quinlan.SPA
 -----------
@@ -49,15 +87,66 @@ Quinlan.Data.Test
 
 Data Services
 
-    CollectibleDataServiceTests => insert/update/delete tests
-    CollectDataServiceTests
+    CollectibleDataServiceTests 
+
+    - Insert_Succeeds
+    - Update_Succeeds
+    - Update_WithInvalidId_Fails
+    - Delete_Succeeds
+    - Delete_WithInvalidId_Fails
+    - Delete_Imported_Fails
+
+    CollegeDataServiceTests
+
+    - Insert_Succeeds
+    - Update_Succeeds
+    - Update_WithInvalidId_Fails
+    - Delete_Succeeds
+    - Delete_WithInvalidId_Fails
+    - Delete_Imported_Fails
+    
     PersonDataServiceTests
+
+    - Insert_Succeeds
+    - Update_Succeeds
+    - Update_WithInvalidId_Fails
+    - Delete_Succeeds
+    - Delete_WithInvalidId_Fails
+    - Delete_Imported_Fails
+
     ProductDataServiceTests
+    
+    - Insert_Succeeds
+    - Update_Succeeds
+    - Update_WithInvalidId_Fails
+    - Delete_Succeeds
+    - Delete_WithInvalidId_Fails
+    - Delete_Imported_Fails
+
     TeamDataServiceTests
+    
+    - Insert_Succeeds
+    - Update_Succeeds
+    - Update_WithInvalidId_Fails
+    - Delete_Succeeds
+    - Delete_WithInvalidId_Fails
+    - Delete_Imported_Fails
 
 Query Services
 
-    ProductQueryServiceTest => all tests must be written
+    ProductQueryServiceTest 
+
+    - Execute_WithSportFilter_Succeeds
+    - Execute_WithLeagueFilter_Succeeds
+    - Execute_WithTeamFilter_Succeeds
+    - Execute_WithPersonFilter_Succeeds
+    - Execute_WithCollegeFilter_Succeeds
+    - Execute_WithNotableFilter_Succeeds
+    - Execute_WithHeismanFilter_Succeeds
+    - Execute_WithHOFFilter_Succeeds
+    - Execute_WithGradedFilter_Succeeds 
+    - Execute_WithRCFilter_Succeeds 
+    - Execute_WithRelicFilter_Succeeds 
 
 Quinlan.Domain.Test
 -------------------
