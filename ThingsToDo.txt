@@ -1,23 +1,38 @@
 
 ---------------------------------------------------------------------------------
 Development - application architecture has been identified and most of the
-              functionality has been completed at the DATA and DOMAIN levels.
-
-              The MVC website is about 85% complete.  
+              functionality has been completed.  The exception is the support 
+              of Products which requires work on each project.  
+              
+              The MVC website requires some cleanup with regard to logging
+              exceptions and styling of views.
 
               The SPA website is just getting started with API and corresponding
-              Angular component working to retreive and display data.
+              Angular component working to retreive and display basedball card
+              data.  Lot's to do here...
 ---------------------------------------------------------------------------------
 
 Quinlan.Data
 ------------
 
+Models
 
+    ProductQueryFilterOptions
+    ProductQueryService
 
 Quinlan.Domain
 --------------
 
+Models
 
+    Product
+    ProductSearch
+    ProductSearchFilterOptions
+
+Services
+
+    ProductService
+    ProductSearchService
 
 Quinlan.MVC
 -----------
@@ -27,63 +42,83 @@ Research
 - How does the built-in logger work?  Where are log files written? 
   Must add logging to each method in each controller once understood.
 
+- Need to move all styles to CSS file.  
+
 Controllers
 
     ProductsController
 
-Binding Models
+Models
 
     ProductViewModel
-
-ListItem Models
-
     ProductListItemViewModel
-
-Page VMs
-
     ProductDetails
     ProductEdit
 
-Form Services
+Services
 
     CardEditService (incomplete)
     ProductFormService
-
-Page Services
-
     ProductDetailsService
     ProductEditService
  
  Views
 
     Cards
-
     - Edit
 
     Products
-
     - Details
     - Edit
 
-Quinlan.SPA
------------
+---------------------------------------------------------------------------------
+Quinlan.SPA - The Single Page Application is just getting started.  I have a
+              functioning component in the ClientApp that requests it's data
+              from an API method which uses an injected service to retrieve
+              data from the domain.
+
+              Note that the Web API is being developed as part of the SPA
+              because it is intended to be custom to the SPA.  
+---------------------------------------------------------------------------------
 
 1) Develop API for the single page application
+
+- Cards
+- Colleges
+- People
+- Sports
+- Teams
+
 2) Develop Angular components
 
+- cards.component
+- colleges.component
+- people.component
+- teams.component
 
+3) Clean up.
 
-
+- Remove counter and fetch-data components
 
 
 ---------------------------------------------------------------------------------
 Unit Testing - much of the unit testing has been identified but only about 
                a third of those tests have been written.  The remaining work
                is itemized below.
+
+               Need a better strategy for seeding data.  And since data that
+               has been imported cannot be protected, the import process
+               must be simulated.
 ---------------------------------------------------------------------------------
 
-Quinlan.Data.Test
------------------
+Quinlan.Test
+------------
+
+Research
+
+- How should I test controllers in the MVC website and API?
+- How should I client-side functionality? With what?
+- Do I need integration testing with Selinium or the like?
 
 Data Services
 
@@ -148,10 +183,11 @@ Query Services
     - Execute_WithRCFilter_Succeeds 
     - Execute_WithRelicFilter_Succeeds 
 
-Quinlan.Domain.Test
--------------------
+Domain Models
 
-CRUD Services
+    - Need to test ToString() method for each domain data class
+
+Domain CRUD Services
 
     CardServiceTests
     CollegeServiceTests
@@ -162,7 +198,7 @@ CRUD Services
     ProductSearchServiceTest
     TeamServiceTest
 
-Search Services      
+Domain Search Services      
 
     CardSearchServiceTests     
     FigurineSearchServiceTests 
@@ -170,23 +206,20 @@ Search Services
     PersonSearchServiceTests   
     TeamSearchServiceTests     
 
-Helper Services
+Domain Helper Services
 
     QueryFilterServiceTests    
 
-Quinlan.MVC.Test
-----------------
-
-Form Services
+MVC Form Services
 
     PersonFormServiceTests
 
-Helper Services
+MVC Helper Services
 
     MvcServiceTests
     SearchFilterTests
 
-Page Services
+MVC Page Services
 
     CardDetailsServiceTests   
     FigurineIndexServiceTests 
@@ -200,7 +233,9 @@ Page Services
     TeamDetailsServiceTests   
     TeamIndexServiceTests    
 
+API Service
 
+    SportsApiServiceTests
 
 
 

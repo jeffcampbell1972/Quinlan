@@ -10,30 +10,26 @@ namespace Quinlan.MVC.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private IHomePageService _homePageService;
-        public HomeController(ILogger<HomeController> logger, IHomePageService homePageService)
+        private IHomeService<Home> _indexService;
+        private IHomeService<Summary> _detailsService;
+        public HomeController(ILogger<HomeController> logger, IHomeService<Home> indexService, IHomeService<Summary> detailsService)
         {
             _logger = logger;
-            _homePageService = homePageService;
+            _indexService = indexService;
+            _detailsService = detailsService;
         }
 
         public IActionResult Index()
         {
-            var homeViewModel = _homePageService.Build();
+            var homeViewModel = _indexService.Build();
 
             return View(homeViewModel);
         }
         public IActionResult Details()
         {
-            var summaryViewModel = _homePageService.BuildSummary();
+            var summaryViewModel = _detailsService.Build();
 
             return View(summaryViewModel);
-        }
-        public IActionResult Seed()
-        {
-            // seed code goes here
-
-            return RedirectToAction("Index");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

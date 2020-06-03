@@ -37,7 +37,6 @@ namespace Quinlan.MVC
 
             services.AddDbContext<QdbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("QDatabase")));         
 
-
             // Data services required by Domain services
             services.AddScoped<IDataService<Quinlan.Data.Models.Collectible>, CollectibleDataService>();
             services.AddScoped<IDataService<Quinlan.Data.Models.College>, CollegeDataService>();
@@ -67,7 +66,8 @@ namespace Quinlan.MVC
             services.AddScoped<ISummaryService<DataSummary>, CollectibleSummaryService>();
 
             // MVC services required by Controllers
-            services.AddScoped<IHomePageService, HomePageService>();
+            services.AddScoped<IHomeService<Home>, HomeIndexService>();
+            services.AddScoped<IHomeService<Summary>, HomeDetailsService>();
 
             services.AddScoped<IIndexService<FigurineIndex,FigurineFilterOptionsViewModel>, FigurineIndexService>();
             services.AddScoped<IIndexService<MagazineIndex, MagazineFilterOptionsViewModel>, MagazineIndexService>();
