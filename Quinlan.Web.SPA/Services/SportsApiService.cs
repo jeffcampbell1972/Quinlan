@@ -49,8 +49,8 @@ namespace Quinlan.API.Services
                 CardNumber = x.CardNumber.ToString() ,
                 Year = x.Year.ToString() ,
                 RC = x.RCFlag ? "RC" : "" ,
-                PersonName = x.Person.ToString() ,
-                TeamName = x.Team.ToString()
+                PersonName = x.Person == null ? "" : x.Person.ToString() ,
+                TeamName = x.Team == null ? "" : x.Team.ToString()
             })
             .ToList();
 
