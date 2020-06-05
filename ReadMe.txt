@@ -32,18 +32,32 @@ Instructions : The application is being developed using Visual Studio 2019 with 
                   Express with it, but you should verify until I can expand this part
                   of the instructions.
 
-               2) Open Visual Studio and get the latest code.  This instruction also
-                  needs to be more detailed.
+               2) Open Visual Studio
+               
+               3) Under File menu, click 'Clone or Check Out Code'.  The 
+                  repository url is https://github.com/jeffcampbel1972/Quinlan.  
 
-               3) Under Build menu, click 'Build Solution' and verify that it compiles
+               3) Under Build menu, click 'Build Solution' and verify that it compiles.
+                  It will probably take a while to update packages and the like.
 
-               4) In Solution Explorer, right-click Quinlan.MVC and click 'Set as Startup Project'
+               4) Open Solution Explorer, right-click Quinlan.MVC, and click 'Set as Startup Project'.
+                  The database connectionstring appsettings.json is 
+                  'Server=(localdb)\\mssqllocaldb;Database=QDb;Trusted_Connection=True;'.  If you're
+                  using a different database server, you'll need to modify it.  Otherwise, you should
+                  be good to go.
 
-               5) Under Debug menu, click 'Start without Debugging'
+               5) Under Debug menu, click 'Start without Debugging'.  The Entity Framework is defined
+                  to create the database if it does not exist.  If all goes well, the home page should 
+                  render with not data to show.  Exit application.  Stop debugging in VS, if necessary.
 
-               6) This should take a bit of time as it is creating the database.  Once that is
-                  complete, the home page should render with not data to show.  Exit application.
+               6) Under Quinlan.Initialize, open the Add2DB.sql script in the SQL folder.  
+                  The pathnames to the init files must be modified to reflect where they are
+                  located on you PC.  
 
-               7) 
+                  Once modified, connect to the QDb database and execute the script.  Its been
+                  quite stable so it should work.
+
+               7) Under Debug menu, click 'Start without Debugging' again.  The website should render
+                  with data.
                
 

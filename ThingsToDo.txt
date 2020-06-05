@@ -25,12 +25,16 @@ Quinlan.Domain
 
 Models
 
+    Grader
+    Manufacturer
     Product
     ProductSearch
     ProductSearchFilterOptions
 
 Services
 
+    GraderService
+    ManufacturuerService
     ProductService
     ProductSearchService
 
