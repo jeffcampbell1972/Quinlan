@@ -7,16 +7,21 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { SportsComponent } from './sports/sports.component';
+import { SportsService } from './Services/sports/sports.service';
+import { BaseballComponent } from './Components/baseball/baseball.component';
+import { BasketballComponent } from './Components/basketball/basketball.component';
+import { FootballComponent } from './Components/football/football.component';
+import { HockeyComponent } from './Components/hockey/hockey.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    CounterComponent,
-    SportsComponent
+    BaseballComponent,
+    BasketballComponent,
+    FootballComponent,
+    HockeyComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -24,11 +29,15 @@ import { SportsComponent } from './sports/sports.component';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'sports', component: SportsComponent },
+      { path: 'cards/baseball', component: BaseballComponent },
+      { path: 'cards/basketball', component: BasketballComponent },
+      { path: 'cards/football', component: FootballComponent },
+      { path: 'cards/hockey', component: HockeyComponent },
     ])
   ],
-  providers: [],
+  providers: [
+    SportsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
