@@ -8,20 +8,20 @@ using Quinlan.Domain.Services;
 
 namespace Quinlan.API.Services
 {
-    public class SportsApiService : IApiService<SportDTO>
+    public class PeopleApiService : IApiService<PersonDTO>
     {
-        ICrudService<Sport> _sportService;
+        ICrudService<Person> _personService;
         ICollectibleSearchService<CardSearch, CardSearchFilterOptions> _cardSearchService;
-        public SportsApiService(ICrudService<Sport> sportService, ICollectibleSearchService<CardSearch, CardSearchFilterOptions> cardSearchService)
+        public PeopleApiService(ICrudService<Person> personService, ICollectibleSearchService<CardSearch, CardSearchFilterOptions> cardSearchService)
         {
-            _sportService = sportService;
+            _personService = personService;
             _cardSearchService = cardSearchService;
         }
-        public List<SportDTO> Get()
+        public List<PersonDTO> Get()
         {
-            var sports = _sportService.Get();
+            var people = _personService.Get();
 
-            var sportDTOs = sports.Select(x => new SportDTO
+            var personDTOs = people.Select(x => new PersonDTO
             {
                  Id = x.Id ,
                  Name = x.Name ,
@@ -29,15 +29,15 @@ namespace Quinlan.API.Services
             })
             .ToList();
 
-            return sportDTOs;
+            return personDTOs;
         }
-        public SportDTO Get(int id)
+        public PersonDTO Get(int id)
         {
-            var sport = _sportService.Get(id);
+            var person = _personService.Get(id);
 
             var cardFilterOptions = new CardSearchFilterOptions
             {
-                SportId = id
+                PersonId = id
             };
 
             var cardSearch = _cardSearchService.Get(cardFilterOptions);
@@ -56,21 +56,21 @@ namespace Quinlan.API.Services
             })
             .ToList();
 
-            var sportDTO = new SportDTO
+            var personDTO = new PersonDTO
             {
-                Id = sport.Id ,
-                Name = sport.Name ,
+                Id = person.Id ,
+                Name = person.Name ,
                 Cards = cardDTOs
             };
 
-            return sportDTO;
+            return personDTO;
         }
     
-        public void Post(SportDTO sportDTO)
+        public void Post(PersonDTO personDTO)
         {
             throw new Exception();
         }
-        public void Put(int id, SportDTO sportDTO)
+        public void Put(int id, PersonDTO personDTO)
         {
             throw new Exception();
         }

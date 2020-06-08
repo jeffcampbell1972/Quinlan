@@ -7,21 +7,26 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
+
+import { CollegesService } from './Services/colleges/colleges.service';
+import { PeopleService } from './Services/people/people.service';
 import { SportsService } from './Services/sports/sports.service';
-import { BaseballComponent } from './Components/baseball/baseball.component';
-import { BasketballComponent } from './Components/basketball/basketball.component';
-import { FootballComponent } from './Components/football/football.component';
-import { HockeyComponent } from './Components/hockey/hockey.component';
+import { TeamsService } from './Services/teams/teams.service';
+
+import { CollegeComponent } from './Components/college/college.component';
+import { PersonComponent } from './Components/person/person.component';
+import { SportComponent } from './Components/sport/sport.component';
+import { TeamComponent } from './Components/team/team.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    BaseballComponent,
-    BasketballComponent,
-    FootballComponent,
-    HockeyComponent
+    CollegeComponent,
+    PersonComponent,
+    SportComponent,
+    TeamComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -29,14 +34,17 @@ import { HockeyComponent } from './Components/hockey/hockey.component';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'cards/baseball', component: BaseballComponent },
-      { path: 'cards/basketball', component: BasketballComponent },
-      { path: 'cards/football', component: FootballComponent },
-      { path: 'cards/hockey', component: HockeyComponent },
+      { path: 'college/:id', component: CollegeComponent },
+      { path: 'person/:id', component: PersonComponent },
+      { path: 'sport/:id', component: SportComponent },
+      { path: 'team/:id', component: TeamComponent },
     ])
   ],
   providers: [
-    SportsService
+    CollegesService,
+    PeopleService,
+    SportsService,
+    TeamsService
   ],
   bootstrap: [AppComponent]
 })

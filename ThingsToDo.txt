@@ -85,24 +85,10 @@ Quinlan.SPA - The Single Page Application is just getting started.  I have a
               because it is intended to be custom to the SPA.  
 ---------------------------------------------------------------------------------
 
-1) Develop API for the single page application
+1) Add filtering options to each of the card list pages
 
-- Cards
-- Colleges
-- People
-- Sports
-- Teams
+2) People Index and Team Index pages
 
-2) Develop Angular components
-
-- cards.component
-- colleges.component
-- people.component
-- teams.component
-
-3) Clean up.
-
-- Remove counter and fetch-data components
 
 
 ---------------------------------------------------------------------------------
@@ -110,9 +96,7 @@ Unit Testing - much of the unit testing has been identified but only about
                a third of those tests have been written.  The remaining work
                is itemized below.
 
-               Need a better strategy for seeding data.  And since data that
-               has been imported cannot be protected, the import process
-               must be simulated.
+               Need a better strategy for seeding data for tests.  MOQ?
 ---------------------------------------------------------------------------------
 
 Quinlan.Test

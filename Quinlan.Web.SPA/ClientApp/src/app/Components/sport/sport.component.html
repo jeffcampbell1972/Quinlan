@@ -19,9 +19,9 @@
       <td>{{ card.year }}</td>
       <td>{{ card.companyName }}</td>
       <td>{{ card.cardNumber }}</td>
-      <td>{{ card.personName }}</td>
+      <td><a  [routerLink]="['/person', card.personId]">{{ card.personName }}</a></td>
       <td>{{ card.rc }}</td>
-      <td>{{ card.teamName }}</td>
+      <td><a [routerLink]="['/team', card.teamId]">{{ card.teamName }}</a></td>
     </tr>
   </tbody>
 </table>

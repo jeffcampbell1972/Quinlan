@@ -1,9 +1,9 @@
 
-<h1 id="tableLabel">{{sport.name}} Cards</h1>
+<h1 id="tableLabel">{{team.name}} Cards</h1>
 
-<p *ngIf="!sport"><em>Loading...</em></p>
+<p *ngIf="!team"><em>Loading...</em></p>
 
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="sport">
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="team">
   <thead>
     <tr>
       <th>Year</th>
@@ -11,17 +11,15 @@
       <th>Card #</th>
       <th>Person</th>
       <th>RC</th>
-      <th>Team</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let card of sport.cards">
+    <tr *ngFor="let card of team.cards">
       <td>{{ card.year }}</td>
       <td>{{ card.companyName }}</td>
       <td>{{ card.cardNumber }}</td>
-      <td>{{ card.personName }}</td>
+      <td><a [routerLink]="['/person', card.personId]">{{ card.personName }}</a></td>
       <td>{{ card.rc }}</td>
-      <td>{{ card.teamName }}</td>
     </tr>
   </tbody>
 </table>

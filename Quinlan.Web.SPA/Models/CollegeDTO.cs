@@ -2,7 +2,7 @@
 
 namespace Quinlan.API.Models
 {
-    public class SportDTO
+    public class CollegeDTO
     {
         public int Id { get; set; }
         public string Name { get; set; }

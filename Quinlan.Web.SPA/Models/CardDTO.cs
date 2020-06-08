@@ -13,6 +13,8 @@ namespace Quinlan.API.Models
         public string CardNumber { get; set; }
         public string RC { get; set; }
         public string PersonName { get; set; }
+        public int PersonId { get; set; }
         public string TeamName { get; set; }
+        public int TeamId { get; set; }
     }
 }

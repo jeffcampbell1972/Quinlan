@@ -1,0 +1,27 @@
+
+<h1 id="tableLabel">{{college.name}} Cards</h1>
+
+<p *ngIf="!college"><em>Loading cards for college...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="college">
+  <thead>
+    <tr>
+      <th>Year</th>
+      <th>Company</th>
+      <th>Card #</th>
+      <th>Person</th>
+      <th>RC</th>
+      <th>Team</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let card of college.cards">
+      <td>{{ card.year }}</td>
+      <td>{{ card.companyName }}</td>
+      <td>{{ card.cardNumber }}</td>
+      <td><a [routerLink]="['/person', card.personId]">{{ card.personName }}</a></td>
+      <td>{{ card.rc }}</td>
+      <td><a [routerLink]="['/team', card.teamId]">{{ card.teamName }}</a></td>
+    </tr>
+  </tbody>
+</table>

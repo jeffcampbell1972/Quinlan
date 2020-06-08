@@ -36,13 +36,22 @@ namespace Quinlan.SPA
 
             // Data Services required by Domain Services
             services.AddScoped<ICollectibleQueryService<CollectibleQueryFilterOptions>, CollectibleQueryService>();
+            services.AddScoped<IDataService<Quinlan.Data.Models.College>, CollegeDataService>();
+            services.AddScoped<IDataService<Quinlan.Data.Models.Person>, PersonDataService>();
+            services.AddScoped<IDataService<Quinlan.Data.Models.Team>, TeamDataService>();
 
             // Domain Services required by API Services
             services.AddScoped<ICollectibleSearchService<CardSearch, CardSearchFilterOptions>, CardSearchService>();
+            services.AddScoped<ICrudService<College>, CollegeService>();
+            services.AddScoped<ICrudService<Person>, PersonService>();
             services.AddScoped<ICrudService<Sport>, SportService>();
+            services.AddScoped<ICrudService<Team>, TeamService>();
 
             // API Services required by Controllers
+            services.AddScoped<IApiService<CollegeDTO>, CollegesApiService>();
+            services.AddScoped<IApiService<PersonDTO>, PeopleApiService>();
             services.AddScoped<IApiService<SportDTO>, SportsApiService>();
+            services.AddScoped<IApiService<TeamDTO>, TeamsApiService>();
 
 
             // In production, the Angular files will be served from this directory

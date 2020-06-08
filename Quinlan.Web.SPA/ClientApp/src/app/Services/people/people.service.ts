@@ -1,12 +1,11 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Sport } from '../../Interfaces/app.interfaces'
+import { Person } from '../../Interfaces/app.interfaces'
 
 @Injectable()
 
-export class SportsService{
-  public sport: Sport;
+export class PeopleService{
   private _baseUrl: string;
 
   constructor(private httpClient: HttpClient, @Inject('BASE_URL') baseUrl: string)
@@ -14,11 +13,11 @@ export class SportsService{
     this._baseUrl = baseUrl;
   }
 
-  public get(id: number) : Observable<Sport> {
+  public get(id: number): Observable<Person> {
 
-    let rtn = this.httpClient.get<Sport>(this._baseUrl + 'api/sports/' + id);
+    let response = this.httpClient.get<Person>(this._baseUrl + 'api/people/' + id);
 
-    return rtn;
+    return response;
 
   }
 }
