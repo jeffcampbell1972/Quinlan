@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Sport } from '../../Interfaces/app.interfaces'
+import { Sport } from '../../Interfaces/sport.interface'
 
 @Injectable()
 

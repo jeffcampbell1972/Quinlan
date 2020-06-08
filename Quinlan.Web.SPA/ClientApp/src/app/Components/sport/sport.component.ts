@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SportsService } from '../../Services/sports/sports.service';
-import { Sport } from '../../Interfaces/app.interfaces'
+import { Sport } from '../../Interfaces/sport.interface'
 
 @Component({
   selector: 'sport',

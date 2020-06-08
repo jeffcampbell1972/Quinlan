@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CollegesService } from '../../Services/colleges/colleges.service';
-import { College } from '../../Interfaces/app.interfaces'
+import { College } from '../../Interfaces/college.interface'
 
 @Component({
   selector: 'college',

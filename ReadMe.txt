@@ -20,8 +20,8 @@ Notes        : For the initial release, no research has been done with regard to
                server so that a full inventory can be performed.
 
 Instructions : The application is being developed using Visual Studio 2019 with a
-               local SQL Server database and the IIS Express web server to handle
-               requests.  So the instructions will assume you are doing the same. 
+               local SQL Server database and the IIS Express web server as the 
+               reverse proxy.  So the instructions will assume you are doing the same. 
                Version 2 should have an installer and be able to run outside of
                Visual Studio but I'm not there yet.
 

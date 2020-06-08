@@ -4,24 +4,22 @@ Development - application architecture has been identified and most of the
               functionality has been completed.  The exception is the support 
               of Products which requires work on each project.  
               
-              The MVC website requires some cleanup with regard to logging
-              exceptions and styling of views.
+- Need to introduce users
+- Need to be able to add new Cards, Colleges, People, and Teams
+- Should Products be fully implemented? Are they needed?
 
-              The SPA website is just getting started with API and corresponding
-              Angular component working to retreive and display basedball card
-              data.  Lot's to do here...
 ---------------------------------------------------------------------------------
-
-Quinlan.Data
-------------
+Quinlan.Data - the data project is almost entirely complete. There is only more
+               if the product functionality is to be fully supported.
 
 Models
 
     ProductQueryFilterOptions
     ProductQueryService
 
-Quinlan.Domain
---------------
+---------------------------------------------------------------------------------
+Quinlan.Domain - the domain project is very stable, but still needs a bit of
+                 work to be considered complete.  
 
 Models
 
@@ -38,8 +36,9 @@ Services
     ProductService
     ProductSearchService
 
-Quinlan.MVC
------------
+---------------------------------------------------------------------------------
+Quinlan.MVC - The MVC website is mostly complete.  It  requires some cleanup 
+              with regard to logging exceptions and styling of views.  
 
 Research
 
@@ -83,12 +82,12 @@ Quinlan.SPA - The Single Page Application is just getting started.  I have a
 
               Note that the Web API is being developed as part of the SPA
               because it is intended to be custom to the SPA.  
----------------------------------------------------------------------------------
 
 1) Add filtering options to each of the card list pages
 
 2) People Index and Team Index pages
 
+3) Replace usage of IDs in urls with Identifiers (for readability)
 
 
 ---------------------------------------------------------------------------------
@@ -96,17 +95,16 @@ Unit Testing - much of the unit testing has been identified but only about
                a third of those tests have been written.  The remaining work
                is itemized below.
 
-               Need a better strategy for seeding data for tests.  MOQ?
----------------------------------------------------------------------------------
-
-Quinlan.Test
-------------
-
 Research
 
+- Need a more complete process of seeding the data for tests.  MOQ?
 - How should I test controllers in the MVC website and API?
 - How should I client-side functionality? With what?
 - Do I need integration testing with Selinium or the like?
+
+---------------------------------------------------------------------------------
+Quinlan.Test - need to identify specific tests for Domain, MVC, and API tests.
+
 
 Data Services
 

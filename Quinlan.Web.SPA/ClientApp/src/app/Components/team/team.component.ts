@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TeamsService } from '../../Services/teams/teams.service';
-import { Team } from '../../Interfaces/app.interfaces'
+import { Team } from '../../Interfaces/team.interface'
 
 @Component({
   selector: 'team',
