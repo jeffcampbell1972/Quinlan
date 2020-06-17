@@ -101,7 +101,9 @@ namespace Quinlan.MVC.Services
                     Teams = MvcService.BuildTeamsSelectList(teams, cardFilterOptions.TeamId ?? 0) ,
                     Colleges = MvcService.BuildCollegesSelectList(colleges, cardFilterOptions.CollegeId ?? 0),
                     Graders = MvcService.BuildGradersSelectList(graders, cardFilterOptions.GraderId ?? 0),
-                    Grades = MvcService.BuildGradesSelectList(grades, cardFilterOptions.GradeId ?? 0)
+                    Grades = MvcService.BuildGradesSelectList(grades, cardFilterOptions.GradeId ?? 0) ,
+                    MinValues = MvcService.BuildValuesSelectList(cardFilterOptions.MinValue ?? 0) ,
+                    MaxValues = MvcService.BuildValuesSelectList(cardFilterOptions.MaxValue ?? 0)
                 }
             };
 

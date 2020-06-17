@@ -69,7 +69,9 @@ namespace Quinlan.MVC.Services
 
                 FilterOptionsVM = new CardSearchViewModel
                 {
-                    People = MvcService.BuildPeopleSelectList(people, cardFilterOptions.PersonId ?? 0)
+                    People = MvcService.BuildPeopleSelectList(people, cardFilterOptions.PersonId ?? 0),
+                    MinValues = MvcService.BuildValuesSelectList(cardFilterOptions.MinValue ?? 0),
+                    MaxValues = MvcService.BuildValuesSelectList(cardFilterOptions.MaxValue ?? 0)
                 }
             };
 

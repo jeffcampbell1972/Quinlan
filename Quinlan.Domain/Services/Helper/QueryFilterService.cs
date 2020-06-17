@@ -28,7 +28,9 @@ namespace Quinlan.Domain.Services
                 Year = cardFilterOptions.Year ,
                 GraderId = cardFilterOptions.GraderId,
                 GradeId = cardFilterOptions.GradeId,
-                ManufacturerId = cardFilterOptions.ManufacturerId
+                ManufacturerId = cardFilterOptions.ManufacturerId ,
+                MinValue = cardFilterOptions.MinValue ,
+                MaxValue = cardFilterOptions.MaxValue
             };
 
             return collectibleFilterOptions;

@@ -19,5 +19,7 @@ namespace Quinlan.MVC.Models
         public List<SelectListItem> Colleges { get; set; }
         public List<SelectListItem> Graders { get; set; }
         public List<SelectListItem> Grades { get; set; }
+        public List<SelectListItem> MinValues { get; set; }
+        public List<SelectListItem> MaxValues { get; set; }
     }
 }

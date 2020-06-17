@@ -1,78 +1,70 @@
 
 ---------------------------------------------------------------------------------
 Development - application architecture has been identified and most of the
-              functionality has been completed.  The exception is the support 
-              of Products which requires work on each project.  
+              functionality has been completed.  The remaining work is listed
+              below. Note that DATA and DOMAIN projects are mostly complete
+              and will like require minimum changes going forward.  
               
 - Need to introduce users
 - Need to be able to add new Cards, Colleges, People, and Teams
-- Should Products be fully implemented? Are they needed?
-
----------------------------------------------------------------------------------
-Quinlan.Data - the data project is almost entirely complete. There is only more
-               if the product functionality is to be fully supported.
-
-Models
-
-    ProductQueryFilterOptions
-    ProductQueryService
-
----------------------------------------------------------------------------------
-Quinlan.Domain - the domain project is very stable, but still needs a bit of
-                 work to be considered complete.  
-
-Models
-
-    Grader
-    Manufacturer
-    Product
-    ProductSearch
-    ProductSearchFilterOptions
-
-Services
-
-    GraderService
-    ManufacturuerService
-    ProductService
-    ProductSearchService
+- Need to be able to add, edit, and delete Products
+- Need to be able to add/remove card to/from a Product
+- Need to be able to add search results to a Product
 
 ---------------------------------------------------------------------------------
 Quinlan.MVC - The MVC website is mostly complete.  It  requires some cleanup 
-              with regard to logging exceptions and styling of views.  
-
-Research
-
-- How does the built-in logger work?  Where are log files written? 
-  Must add logging to each method in each controller once understood.
-
-- Need to move all styles to CSS file.  
+              with regard to logging exceptions and styling of views.   
 
 Controllers
 
-    ProductsController
+    CardsController - add methods to Create
+    CollegesController - add methods to Create
+    PeopleController - add methods to Create
+    ProductsController - add methods for Create/Edit/Details
+    TeamsController - add methods to Create
 
 Models
 
+    CardCreate
+    CollegeCreate
+    PersonCreate
     ProductViewModel
-    ProductListItemViewModel
+    ProductCreate
     ProductDetails
     ProductEdit
+    TeamCreate
 
 Services
 
+    CardCreateService
     CardEditService (incomplete)
-    ProductFormService
+    CollegeCreateService
+    PersonCreateService
+    ProductCreateService
     ProductDetailsService
     ProductEditService
+    ProductFormService
+    TeamCreateService
  
  Views
 
     Cards
+    - Create
     - Edit
 
+    Colleges
+    - Create
+
+    People
+    - Create
+
     Products
+    - Create
     - Details
     - Edit
+
+    Teams
+    - Create
 
 ---------------------------------------------------------------------------------
 Quinlan.SPA - The Single Page Application is just getting started.  I have a
@@ -97,6 +89,7 @@ Unit Testing - much of the unit testing has been identified but only about
 
 Research
 
+- Should there be one TEST project?  Or one each for DATA, DOMAIN, MVC, etc?
 - Need a more complete process of seeding the data for tests.  MOQ?
 - How should I test controllers in the MVC website and API?
 - How should I client-side functionality? With what?

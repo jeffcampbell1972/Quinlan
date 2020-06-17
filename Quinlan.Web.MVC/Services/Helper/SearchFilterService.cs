@@ -31,7 +31,9 @@ namespace Quinlan.MVC.Services
                 Year = cardFilterOptions.Year ,
                 GraderId = GetNullableId(cardFilterOptions.GraderId),
                 GradeId = GetNullableId(cardFilterOptions.GradeId),
-                ManufacturerId = GetNullableId(cardFilterOptions.ManufacturerId),
+                ManufacturerId = GetNullableId(cardFilterOptions.ManufacturerId) , 
+                MinValue = GetNullableValue(cardFilterOptions.MinValue) ,
+                MaxValue = GetNullableValue(cardFilterOptions.MaxValue)
             };
 
             return cardSearchFilterOptions;
@@ -113,6 +115,17 @@ namespace Quinlan.MVC.Services
             }
 
             return nullableId;
+        }
+        public static decimal? GetNullableValue(decimal? val)
+        {
+            decimal? nullableValue = null;
+
+            if (val > 0)
+            {
+                nullableValue = val;
+            }
+
+            return nullableValue;
         }
     }
 }

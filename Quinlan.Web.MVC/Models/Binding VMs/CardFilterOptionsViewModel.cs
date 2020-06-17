@@ -58,5 +58,11 @@ namespace Quinlan.MVC.Models
 
         [Display(Name = "Manufacturer")]
         public int ManufacturerId { get; set; }
+
+        [Display(Name = "Min Value")]
+        public decimal? MinValue { get; set; }
+
+        [Display(Name = "Max Value")]
+        public decimal? MaxValue { get; set; }
     }
 }

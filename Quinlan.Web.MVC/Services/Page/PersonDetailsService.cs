@@ -81,8 +81,10 @@ namespace Quinlan.MVC.Services
                 FilterOptionsVM = new CardSearchViewModel
                 {
                     Teams = MvcService.BuildTeamsSelectList(teams, cardFilterOptions.TeamId ?? 0),
+                    MinValues = MvcService.BuildValuesSelectList(cardFilterOptions.MinValue ?? 0),
+                    MaxValues = MvcService.BuildValuesSelectList(cardFilterOptions.MaxValue ?? 0),
                     ShowPeopleFilters = "hidden" ,
-                    FilterOptions = filterOptionsVM
+                    FilterOptions = filterOptionsVM 
                 }
             };
 

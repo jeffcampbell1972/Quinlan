@@ -43,7 +43,9 @@ namespace Quinlan.Data.Services
                     (!filterOptions.VintageFlag || x.Year < 1970) &&
                     (filterOptions.CollectibleTypeId == null || x.CollectibleTypeId == filterOptions.CollectibleTypeId) &&
                     (filterOptions.GraderId == null || (x.Grade != null && x.Grade.GraderId == filterOptions.GraderId)) &&
-                    (filterOptions.GradeId == null || (x.Grade != null && x.Grade.Id == filterOptions.GradeId))
+                    (filterOptions.GradeId == null || (x.Grade != null && x.Grade.Id == filterOptions.GradeId)) &&
+                    (filterOptions.MinValue == null || (x.Value >= filterOptions.MinValue)) &&
+                    (filterOptions.MaxValue == null || (x.Value <= filterOptions.MaxValue))
                 )
                 .OrderBy(x => x.Year)
                 .ThenBy(x => x.Set.Name)

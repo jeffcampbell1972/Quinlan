@@ -22,5 +22,7 @@ namespace Quinlan.Data.FilterOptions
         public int? ManufacturerId { get; set; }
         public int? GraderId { get; set; }
         public int? GradeId { get; set; }
+        public decimal? MinValue { get; set; }
+        public decimal? MaxValue { get; set; }
     }
 }

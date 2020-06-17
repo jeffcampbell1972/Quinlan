@@ -21,6 +21,7 @@ namespace Quinlan.Domain.Models
         public int? GraderId { get; set; }
         public int? GradeId { get; set; }
         public int? ManufacturerId { get; set; }
-
+        public decimal? MinValue { get; set; }
+        public decimal? MaxValue { get; set; }
     }
 }

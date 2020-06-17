@@ -46,8 +46,10 @@
     }
 </section>
 
-<section id="column2" style="float:left; width:12%;" @Model.ShowPeopleFilters>
+<section id="column2" style="float:left; width:12%;" >
 
+    @if (@Model.ShowPeopleFilters != "hidden")
+    {
     <section id="hofFilter">
         <input id="hofCheckBox" type="checkbox" style="float:left;" asp-for="@Model.FilterOptions.HOFFlag" />
         <label class="FormCheckBoxLabel" for="hofCheckBox" asp-for="@Model.FilterOptions.HOFFlag"></label>
@@ -68,6 +70,11 @@
 
         <div style="clear:both"></div>
     </section>
+    }
+    else
+    {
+        <div>&nbsp;</div>
+    }
 
 </section>
 
@@ -88,6 +95,26 @@
         <section id="gradeFilter">
             <label class="FilterLabel" asp-for="@Model.FilterOptions.GradeId"></label>
             <select style="float:left" asp-for="@Model.FilterOptions.GradeId" asp-items="@Model.Grades">
+            </select>
+
+            <div style="clear:both"></div>
+        </section>
+    }
+    @if (Model.MinValues != null && Model.MinValues.Count > 1)
+    {
+        <section id="minValueFilter">
+            <label class="FilterLabel" asp-for="@Model.FilterOptions.MinValue"></label>
+            <select style="float:left" asp-for="@Model.FilterOptions.MinValue" asp-items="@Model.MinValues">
+            </select>
+
+            <div style="clear:both"></div>
+        </section>
+    }
+    @if (Model.MaxValues != null && Model.MaxValues.Count > 1)
+    {
+        <section id="maxValueFilter">
+            <label class="FilterLabel" asp-for="@Model.FilterOptions.MaxValue"></label>
+            <select style="float:left" asp-for="@Model.FilterOptions.MaxValue" asp-items="@Model.MaxValues">
             </select>
 
             <div style="clear:both"></div>

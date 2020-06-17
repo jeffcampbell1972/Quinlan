@@ -42,6 +42,7 @@ with ( FIELDTERMINATOR = ',', ROWTERMINATOR = '\n')
 -- update the type of card based on the Q's description column values
 
 update _BulkInsertCards set SubjectType = 'Player' where SubjectType is null
+update _BulkInsertCards set Team = 'New York Giants (MLB)' where Team = 'New York Giants' and Sport = 'BS'
 
 -- People.csv
 create table _BulkInsertPeople

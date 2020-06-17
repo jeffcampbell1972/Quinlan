@@ -146,5 +146,20 @@ namespace Quinlan.MVC.Services
 
             return gradesList;
         }
+        public static List<SelectListItem> BuildValuesSelectList(decimal cardValue, string allMessage = "N/A")
+        {
+            var cardValuesList = new List<SelectListItem>
+            {
+                new SelectListItem { Value = "0",    Text=string.Format("[{0}]", allMessage),   Selected = cardValue == 0 } ,
+                new SelectListItem { Value = "25",   Text="$25",   Selected = cardValue == 25 } ,
+                new SelectListItem { Value = "50",   Text="$50",   Selected = cardValue == 50 } ,
+                new SelectListItem { Value = "100",  Text="$100",  Selected = cardValue == 100 } ,
+                new SelectListItem { Value = "200",  Text="$200",  Selected = cardValue == 200 } ,
+                new SelectListItem { Value = "500",  Text="$500",  Selected = cardValue == 500 } ,
+                new SelectListItem { Value = "1000", Text="$1000", Selected = cardValue == 1000 } 
+            };
+
+            return cardValuesList;
+        }
     }
 }
