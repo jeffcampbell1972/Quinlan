@@ -27,7 +27,11 @@ namespace Quinlan.MVC.Services
                 NotablePersonFlag = cardFilterOptions.NotablePersonFlag,
                 GradedFlag = cardFilterOptions.GradedFlag,
                 HeismanFlag = cardFilterOptions.HeismanFlag,
-                Year = cardFilterOptions.Year
+                VintageFlag = cardFilterOptions.VintageFlag,
+                Year = cardFilterOptions.Year ,
+                GraderId = GetNullableId(cardFilterOptions.GraderId),
+                GradeId = GetNullableId(cardFilterOptions.GradeId),
+                ManufacturerId = GetNullableId(cardFilterOptions.ManufacturerId),
             };
 
             return cardSearchFilterOptions;

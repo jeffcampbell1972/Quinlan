@@ -40,7 +40,10 @@ namespace Quinlan.MVC
             // Data services required by Domain services
             services.AddScoped<IDataService<Quinlan.Data.Models.Collectible>, CollectibleDataService>();
             services.AddScoped<IDataService<Quinlan.Data.Models.College>, CollegeDataService>();
+            services.AddScoped<IDataService<Quinlan.Data.Models.Grade>, GradeDataService>();
+            services.AddScoped<IDataService<Quinlan.Data.Models.Grader>, GraderDataService>();
             services.AddScoped<IDataService<Quinlan.Data.Models.Person>, PersonDataService>();
+            services.AddScoped<IDataService<Quinlan.Data.Models.Product>, ProductDataService>();
             services.AddScoped<IDataService<Quinlan.Data.Models.Team>, TeamDataService>();
 
             services.AddScoped<ICollectibleQueryService<CollectibleQueryFilterOptions>, CollectibleQueryService>();
@@ -51,8 +54,11 @@ namespace Quinlan.MVC
             // Domain services required by MVC services
             services.AddScoped<ICrudService<Card>, CardService>();
             services.AddScoped<ICrudService<College>, CollegeService>();
+            services.AddScoped<ICrudService<Grade>, GradeService>();
+            services.AddScoped<ICrudService<Grader>, GraderService>();
             services.AddScoped<ICrudService<League>, LeagueService>();
             services.AddScoped<ICrudService<Person>, PersonService>();
+            services.AddScoped<ICrudService<Product>, ProductService>();
             services.AddScoped<ICrudService<Sport>, SportService>();
             services.AddScoped<ICrudService<Team>, TeamService>();
 
@@ -91,6 +97,7 @@ namespace Quinlan.MVC
             services.AddScoped<IFormService<TeamViewModel>, TeamFormService>();
 
             services.AddScoped<IIndexService<PersonIndex, PersonFilterOptionsViewModel>, PersonIndexService>();
+            services.AddScoped<IIndexService<ProductIndex, ProductFilterOptionsViewModel>, ProductIndexService>();
             services.AddScoped<IIndexService<TeamIndex, TeamFilterOptionsViewModel>, TeamIndexService>();
 
         }

@@ -33,6 +33,11 @@ namespace Quinlan.Data.Services
         }
         public void Insert(Product product)
         {
+            // not sure whether this will affect the Collectibles which are related to the Product.
+            // currently, the domain drives the logic which updates each Collectible in the Product.
+            // if hydrated Collectibles list is provided, it might handle those updates without
+            // extra code.
+
             _qDb.Products.Add(product);
             _qDb.SaveChanges();
         }

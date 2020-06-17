@@ -12,11 +12,15 @@ namespace Quinlan.Domain.Models
         public bool GradedFlag { get; set; }
         public bool RelicFlag { get; set; }
         public bool AutographedFlag { get; set; }
+        public bool VintageFlag { get; set; }
         public int? PersonId { get; set; }
         public int? SportId { get; set; }
         public int? LeagueId { get; set; }
         public int? TeamId { get; set; }
         public int? CollegeId { get; set; }
+        public int? GraderId { get; set; }
+        public int? GradeId { get; set; }
+        public int? ManufacturerId { get; set; }
 
     }
 }

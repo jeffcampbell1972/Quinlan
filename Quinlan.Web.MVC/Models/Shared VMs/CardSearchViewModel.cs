@@ -17,5 +17,7 @@ namespace Quinlan.MVC.Models
         public List<SelectListItem> People { get; set; }
         public List<SelectListItem> Leagues { get; set; }
         public List<SelectListItem> Colleges { get; set; }
+        public List<SelectListItem> Graders { get; set; }
+        public List<SelectListItem> Grades { get; set; }
     }
 }

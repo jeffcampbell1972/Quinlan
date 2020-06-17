@@ -1,109 +1,152 @@
 ﻿@model CardSearchViewModel
 
-    <section id="column1" style="float:left; width:40%">
+<hr />
 
-        @if (Model.Leagues != null && Model.Leagues.Count > 1)
-        {
-            <section id="leagueFilter">
-                <label style="float:left">League</label>
-                <select style="float:left" asp-for="@Model.FilterOptions.LeagueId" asp-items="@Model.Leagues">
-                </select>
+<section id="column1" style="float:left; width:34%">
 
-                <div style="clear:both"></div>
-            </section>
-        }
-        @if (Model.Teams != null && Model.Teams.Count > 1)
-        {
-            <section id="teamFilter">
-                <label style="float:left">Team</label>
-                <select style="float:left" asp-for="@Model.FilterOptions.TeamId" asp-items="@Model.Teams">
-                </select>
+    @if (Model.Leagues != null && Model.Leagues.Count > 1)
+    {
+        <section id="leagueFilter">
+            <label class="FilterLabel" asp-for="@Model.FilterOptions.LeagueId"></label>
+            <select style="float:left" asp-for="@Model.FilterOptions.LeagueId" asp-items="@Model.Leagues">
+            </select>
 
-                <div style="clear:both"></div>
-            </section>
-        }
-        @if (Model.People != null && Model.People.Count > 1)
-        {
-            <section id="personFilter">
-                <label style="float:left">Person</label>
-                <select style="float:left" asp-for="@Model.FilterOptions.PersonId" asp-items="@Model.People">
-                </select>
+            <div style="clear:both"></div>
+        </section>
+    }
+    @if (Model.Teams != null && Model.Teams.Count > 1)
+    {
+        <section id="teamFilter">
+            <label class="FilterLabel" asp-for="@Model.FilterOptions.TeamId"></label>
+            <select style="float:left" asp-for="@Model.FilterOptions.TeamId" asp-items="@Model.Teams">
+            </select>
 
-                <div style="clear:both"></div>
-            </section>
-        }
-        @if (Model.Colleges != null && Model.Colleges.Count > 1)
-        {
-            <section id="collegeFilter">
-                <label style="float:left">College</label>
-                <select style="float:left" asp-for="@Model.FilterOptions.CollegeId" asp-items="@Model.Colleges">
-                </select>
+            <div style="clear:both"></div>
+        </section>
+    }
+    @if (Model.People != null && Model.People.Count > 1)
+    {
+        <section id="personFilter">
+            <label class="FilterLabel" asp-for="@Model.FilterOptions.PersonId"></label>
+            <select style="float:left" asp-for="@Model.FilterOptions.PersonId" asp-items="@Model.People">
+            </select>
 
-                <div style="clear:both"></div>
-            </section>
-        }
+            <div style="clear:both"></div>
+        </section>
+    }
+    @if (Model.Colleges != null && Model.Colleges.Count > 1)
+    {
+        <section id="collegeFilter">
+            <label class="FilterLabel" asp-for="@Model.FilterOptions.CollegeId"></label>
+            <select style="float:left" asp-for="@Model.FilterOptions.CollegeId" asp-items="@Model.Colleges">
+            </select>
+
+            <div style="clear:both"></div>
+        </section>
+    }
+</section>
+
+<section id="column2" style="float:left; width:12%;" @Model.ShowPeopleFilters>
+
+    <section id="hofFilter">
+        <input id="hofCheckBox" type="checkbox" style="float:left;" asp-for="@Model.FilterOptions.HOFFlag" />
+        <label class="FormCheckBoxLabel" for="hofCheckBox" asp-for="@Model.FilterOptions.HOFFlag"></label>
+
+        <div style="clear: both"></div>
     </section>
 
-    <section id="column1" style="float:left; width:25%;"  @Model.ShowPeopleFilters>
+    <section id="heismanFilter" @Model.ShowHeismanFilter>
+        <input id="heismanCheckBox" type="checkbox" style="float:left" asp-for="@Model.FilterOptions.HeismanFlag" />
+        <label class="FormCheckBoxLabel" asp-for="@Model.FilterOptions.HeismanFlag"></label>
 
-        <section id="hofFilter">
-            <input id="hofCheckBox" type="checkbox" style="float:left;" asp-for="@Model.FilterOptions.HOFFlag" />
-            <label id="hofLabel" for="hofCheckBox" style="float:left;">Hall of Famers Only</label>
-
-            <div style="clear: both"></div>
-        </section>
-
-        <section id="heismanFilter" @Model.ShowHeismanFilter>
-            <input id="heismanCheckBox" type="checkbox" style="float:left" asp-for="@Model.FilterOptions.HeismanFlag" />
-            <label id="heismanLabel" for="heismanCheckBox" style="float: left">Heisman Winners Only</label>
-
-            <div style="clear:both"></div>
-        </section>
-
-        <section id="notableFilter">
-            <input id="notableCheckBox" type="checkbox" style="float:left" asp-for="@Model.FilterOptions.NotablePersonFlag" />
-            <label id="notableLabel" for="notableCheckBox" style="float:left">Notables Only</label>
-
-            <div style="clear:both"></div>
-        </section>
-
+        <div style="clear:both"></div>
     </section>
 
-    <section id="column1" style="float:left; width:25%">
+    <section id="notableFilter">
+        <input id="notableCheckBox" type="checkbox" style="float:left" asp-for="@Model.FilterOptions.NotablePersonFlag" />
+        <label class="FormCheckBoxLabel" asp-for="@Model.FilterOptions.NotablePersonFlag"></label>
 
-        <section id="rcFilter">
-            <input id="rcCheckBox" type="checkbox" style="float:left" asp-for="@Model.FilterOptions.RCFlag" />
-            <label id="rcLabel" for="rcCheckBox" style="float:left">Rookies Only</label>
-
-            <div style="clear:both"></div>
-        </section>
-        <section id="gradedFilter">
-            <input id="gradedCheckBox" type="checkbox" style="float:left" asp-for="@Model.FilterOptions.GradedFlag" />
-            <label id="gradedLabel" for="gradedCheckBox" style="float:left">Graded Only</label>
-
-            <div style="clear:both"></div>
-        </section>
-        <section id="auFilter">
-            <input id="auCheckBox" type="checkbox" style="float:left" asp-for="@Model.FilterOptions.AUFlag" />
-            <label id="auLabel" for="auCheckBox" style="float:left">Autographed Only</label>
-
-            <div style="clear:both"></div>
-        </section>
-        <section id="relicFilter">
-            <input id="relicCheckBox" type="checkbox" style="float:left" asp-for="@Model.FilterOptions.RelicFlag" />
-            <label id="relicLabel" for="relicCheckBox" style="float:left">Relics Only</label>
-
-            <div style="clear:both"></div>
-        </section>
-
+        <div style="clear:both"></div>
     </section>
 
-    <section id="column4" style="float:left; width:10%">
-        <nav id="buttons">
-            <button type="submit">Search</button>
-        </nav>
+</section>
+
+<section id="column3" style="float:left; width:25%">
+
+    @if (Model.Graders != null && Model.Graders.Count > 1)
+    {
+        <section id="graderFilter">
+            <label class="FilterLabel" asp-for="@Model.FilterOptions.GraderId"></label>
+            <select style="float:left" asp-for="@Model.FilterOptions.GraderId" asp-items="@Model.Graders">
+            </select>
+
+            <div style="clear:both"></div>
+        </section>
+    }
+    @if (Model.Grades != null && Model.Grades.Count > 1)
+    {
+        <section id="gradeFilter">
+            <label class="FilterLabel" asp-for="@Model.FilterOptions.GradeId"></label>
+            <select style="float:left" asp-for="@Model.FilterOptions.GradeId" asp-items="@Model.Grades">
+            </select>
+
+            <div style="clear:both"></div>
+        </section>
+    }
+</section>
+
+<section id="column4" style="float:left; width:12%">
+
+
+    <section id="rcFilter">
+        <input id="rcCheckBox" type="checkbox" style="float:left" asp-for="@Model.FilterOptions.RCFlag" />
+        <label class="FormCheckBoxLabel" asp-for="@Model.FilterOptions.RCFlag"></label>
+
+        <div style="clear:both"></div>
     </section>
-    
+
+    <section id="gradedFilter">
+        <input id="gradedCheckBox" type="checkbox" style="float:left" asp-for="@Model.FilterOptions.GradedFlag" />
+        <label class="FormCheckBoxLabel" asp-for="@Model.FilterOptions.GradedFlag"></label>
+
+        <div style="clear:both"></div>
+    </section>
+
+    <section id="auFilter">
+        <input id="auCheckBox" type="checkbox" style="float:left" asp-for="@Model.FilterOptions.AUFlag" />
+        <label class="FormCheckBoxLabel" asp-for="@Model.FilterOptions.AUFlag"></label>
+
+        <div style="clear:both"></div>
+    </section>
+
+    <section id="relicFilter">
+        <input id="relicCheckBox" type="checkbox" style="float:left" asp-for="@Model.FilterOptions.RelicFlag" />
+        <label class="FormCheckBoxLabel" asp-for="@Model.FilterOptions.RelicFlag"></label>
+
+        <div style="clear:both"></div>
+    </section>
+
+</section>
+
+<section id="column5" style="float:left; width:12%;">
+
+    <section id="vintageFilter">
+        <input id="vintageCheckBox" type="checkbox" style="float:left" asp-for="@Model.FilterOptions.VintageFlag" />
+        <label class="FormCheckBoxLabel" asp-for="@Model.FilterOptions.VintageFlag"></label>
+
+        <div style="clear:both"></div>
+    </section>
+
+</section>
+
+<section id="column6" style="float:left; width:5%; text-align:right">
+
+    <nav id="buttons">
+        <button type="submit">Search</button>
+    </nav>
+
+</section>
+
 
 <div style="clear:both"></div>
 

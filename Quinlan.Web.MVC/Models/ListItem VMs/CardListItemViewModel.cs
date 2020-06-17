@@ -20,6 +20,7 @@ namespace Quinlan.MVC.Models
 
         public string TeamName { get; set; }
         public string Grade { get; set; }
+        public string GraderName { get; set; }
 
         public string HOF { get; set; }
         public string RC { get; set; }

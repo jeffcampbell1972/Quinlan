@@ -1,0 +1,33 @@
+﻿@model ProductIndex
+
+@{
+    ViewData["Title"] = "People Finder Page";
+}
+
+<section id="bodySection">
+    <h1>Products</h1>
+</section>
+
+<hr />
+
+<section id="bodySection" style="width: 100%">
+
+    <table style="font-size:9pt; width:100%">
+
+        <tr>
+            <th class="ColumnHeader">
+                Name
+            </th>
+        </tr>
+
+        @foreach (var product in Model.Products)
+        {
+        <tr>
+            <td style="width:20%">
+                <a asp-area="" asp-controller="Products" asp-action="Details" asp-route-id=@product.Id>@product.Name</a>
+            </td>
+        </tr>
+        }
+    </table>
+
+</section>

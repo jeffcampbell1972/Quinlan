@@ -19,6 +19,8 @@ namespace Quinlan.Data.Services
             var collectibles = _qDb.Collectibles
                 .Include(x => x.ImportCollectible)
                 .Include(x => x.Grade)
+                .Include(x => x.Grade.Grader)
+                .Include(x => x.Grade.Grader.Organization)
                 .Include(x => x.Person)
                 .Include(x => x.Set)
                 .Include(x => x.Team)
@@ -38,7 +40,10 @@ namespace Quinlan.Data.Services
                     (!filterOptions.RelicFlag || x.PatchFlag == true) &&
                     (!filterOptions.RCFlag || x.RCFlag == true) &&
                     (!filterOptions.GradedFlag || x.GradedFlag == true) &&
-                    (filterOptions.CollectibleTypeId == null || x.CollectibleTypeId == filterOptions.CollectibleTypeId)
+                    (!filterOptions.VintageFlag || x.Year < 1970) &&
+                    (filterOptions.CollectibleTypeId == null || x.CollectibleTypeId == filterOptions.CollectibleTypeId) &&
+                    (filterOptions.GraderId == null || (x.Grade != null && x.Grade.GraderId == filterOptions.GraderId)) &&
+                    (filterOptions.GradeId == null || (x.Grade != null && x.Grade.Id == filterOptions.GradeId))
                 )
                 .OrderBy(x => x.Year)
                 .ThenBy(x => x.Set.Name)
@@ -97,6 +102,45 @@ namespace Quinlan.Data.Services
                     (filterOptions.CollectibleTypeId == null || x.CollectibleTypeId == filterOptions.CollectibleTypeId)
                )
                .Select(x => x.Person.College)
+               .Distinct()
+               .ToList();
+
+            return colleges;
+        }
+        public List<Grade> SelectGrades(CollectibleQueryFilterOptions filterOptions)
+        {
+            var colleges = _qDb.Collectibles
+               .Include(x => x.Grade)
+               .Where(x =>
+                    x.Grade != null &&
+                    (filterOptions.SportId == null || x.SportId == filterOptions.SportId) &&
+                    (filterOptions.LeagueId == null || x.LeagueId == filterOptions.LeagueId || x.Team.LeagueId == filterOptions.LeagueId) &&
+                    (filterOptions.TeamId == null || x.TeamId == filterOptions.TeamId) &&
+                    (filterOptions.PersonId == null || x.PersonId == filterOptions.PersonId) &&
+                    (filterOptions.CollectibleTypeId == null || x.CollectibleTypeId == filterOptions.CollectibleTypeId)
+               )
+               .Select(x => x.Grade)
+               .Distinct()
+               .ToList();
+
+            return colleges;
+        }
+        public List<Grader> SelectGraders(CollectibleQueryFilterOptions filterOptions)
+        {
+            var colleges = _qDb.Collectibles
+               .Include(x => x.Grade)
+               .Include(x => x.Grade.Grader)
+               .Include(x => x.Grade.Grader.Organization)
+               .Where(x =>
+                    x.Grade != null &&
+                    x.Grade.Grader != null &&
+                    (filterOptions.SportId == null || x.SportId == filterOptions.SportId) &&
+                    (filterOptions.LeagueId == null || x.LeagueId == filterOptions.LeagueId || x.Team.LeagueId == filterOptions.LeagueId) &&
+                    (filterOptions.TeamId == null || x.TeamId == filterOptions.TeamId) &&
+                    (filterOptions.PersonId == null || x.PersonId == filterOptions.PersonId) &&
+                    (filterOptions.CollectibleTypeId == null || x.CollectibleTypeId == filterOptions.CollectibleTypeId)
+               )
+               .Select(x => x.Grade.Grader)
                .Distinct()
                .ToList();
 

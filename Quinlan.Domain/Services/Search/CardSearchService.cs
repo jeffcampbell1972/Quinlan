@@ -67,7 +67,8 @@ namespace Quinlan.Domain.Services
                     {
                         Id = x.Grade.Id ,
                         Identifier = x.Grade.Identifier ,
-                        Name = x.Grade.Name
+                        Name = x.Grade.Name ,
+                        GraderName = x.Grade.Grader != null ? x.Grade.Grader.Organization.Name : "??"
                     },
                     Condition = x.GradedFlag ? "" : x.Condition ,
                     RCFlag = x.RCFlag ,
@@ -142,5 +143,37 @@ namespace Quinlan.Domain.Services
 
             return colleges;
         }
-     }
+        public List<Grade> GetGrades(CardSearchFilterOptions filterOptions)
+        {
+            var collectibleFilterOptions = QueryFilterService.BuildCollectibleFilterOptions(filterOptions);
+
+            var gradesData = _collectibleQueryService.SelectGrades(collectibleFilterOptions);
+
+            var grades = gradesData
+               .Select(x => new Grade
+               {
+                   Id = x.Id,
+                   Name = x.Name
+               })
+               .ToList();
+
+            return grades;
+        }
+        public List<Grader> GetGraders(CardSearchFilterOptions filterOptions)
+        {
+            var collectibleFilterOptions = QueryFilterService.BuildCollectibleFilterOptions(filterOptions);
+
+            var gradersData = _collectibleQueryService.SelectGraders(collectibleFilterOptions);
+
+            var graders = gradersData
+               .Select(x => new Grader
+               {
+                   Id = x.Id,
+                   Name = x.Organization.Name
+               })
+               .ToList();
+
+            return graders;
+        }
+    }
 }

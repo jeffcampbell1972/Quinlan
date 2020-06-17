@@ -10,5 +10,7 @@ namespace Quinlan.Data.Services
         public List<Person> SelectPeople(T filterOptions);
         public List<Team> SelectTeams(T filterOptions);
         public List<College> SelectColleges(T filterOptions);
+        public List<Grade> SelectGrades(T filterOptions);
+        public List<Grader> SelectGraders(T filterOptions);
     }
 }

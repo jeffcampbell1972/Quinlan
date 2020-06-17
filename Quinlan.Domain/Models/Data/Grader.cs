@@ -4,11 +4,10 @@ using System.Text;
 
 namespace Quinlan.Domain.Models
 {
-    public class Grade
+    public class Grader
     {
         public int Id { get; set; }
         public string Identifier { get; set; }
         public string Name { get; set; }
-        public string GraderName { get; set; }
     }
 }

@@ -10,5 +10,7 @@ namespace Quinlan.Domain.Services
         public List<Person> GetPeople(U filterOptions);
         public List<Team> GetTeams(U filterOptions);
         public List<College> GetColleges(U filterOptions);
+        public List<Grade> GetGrades(U filterOptions);
+        public List<Grader> GetGraders(U filterOptions);
     }
 }

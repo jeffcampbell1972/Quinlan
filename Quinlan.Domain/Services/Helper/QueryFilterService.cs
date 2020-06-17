@@ -24,7 +24,11 @@ namespace Quinlan.Domain.Services
                 CollegeId = cardFilterOptions.CollegeId,
                 GradedFlag = cardFilterOptions.GradedFlag,
                 HeismanFlag = cardFilterOptions.HeismanFlag,
-                Year = cardFilterOptions.Year
+                VintageFlag = cardFilterOptions.VintageFlag,
+                Year = cardFilterOptions.Year ,
+                GraderId = cardFilterOptions.GraderId,
+                GradeId = cardFilterOptions.GradeId,
+                ManufacturerId = cardFilterOptions.ManufacturerId
             };
 
             return collectibleFilterOptions;

@@ -57,6 +57,9 @@ html {
   position: relative;
   min-height: 100%;
 }
+details summary:focus {
+    display: none;
+}
 
 body {
   /* Margin bottom by footer height */
@@ -80,7 +83,7 @@ input[type=checkbox] {
 }
 
 label {
-    width: 150px;
+    min-width: 100px;
     font-size: smaller;
     margin-left: 5px;
 }
@@ -159,8 +162,23 @@ ul {
     float: left;
     font-weight: bold;
 }
+.FormCheckBoxLabel {
+    float: left;
+}
 .FormValue {
     float:left;
+}
+
+.FilterLabel {
+    float: left;
+}
+
+.FilterCheckBoxLabel {
+    float: left;
+}
+
+.FilterValue {
+    float: left;
 }
 
 .Clear {

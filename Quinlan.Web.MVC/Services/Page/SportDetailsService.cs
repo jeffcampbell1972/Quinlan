@@ -11,6 +11,7 @@ namespace Quinlan.MVC.Services
     {
         ICrudService<Sport> _sportService;
         ICrudService<League> _leagueService;
+
         ICollectibleSearchService<CardSearch, CardSearchFilterOptions> _cardSearchService;
         public SportDetailsService(ICrudService<Sport> sportService, ICrudService<League> leagueService, ICollectibleSearchService<CardSearch, CardSearchFilterOptions> cardSearchService)
         {
@@ -54,6 +55,9 @@ namespace Quinlan.MVC.Services
             var people = _cardSearchService.GetPeople(defaultFilterOptions);
             var teams = _cardSearchService.GetTeams(defaultFilterOptions);
             var colleges = _cardSearchService.GetColleges(defaultFilterOptions);
+            var grades = _cardSearchService.GetGrades(defaultFilterOptions);
+            var graders = _cardSearchService.GetGraders(defaultFilterOptions);
+
             var cards = cardSearch.Cards
                .Select(x => new CardListItemViewModel
                {
@@ -67,6 +71,7 @@ namespace Quinlan.MVC.Services
                    TeamId = x.Team == null ? 0 : x.Team.Id ,
                    Company = x.SetName ,
                    Grade = x.Grade != null ? x.Grade.Name : "" ,
+                   GraderName = x.Grade != null ? x.Grade.GraderName : "" ,
                    RC = x.RCFlag ? "RC" : "" ,
                    HOF = x.Person == null ? "" : x.Person.HOFFlag ? " (HOF)" : "" ,
                    Year = x.Year.ToString() ,
@@ -94,7 +99,9 @@ namespace Quinlan.MVC.Services
                     People = MvcService.BuildPeopleSelectList(people, cardFilterOptions.PersonId ?? 0) ,
                     Leagues = MvcService.BuildLeaguesSelectList(leagues, cardFilterOptions.LeagueId ?? 0) ,
                     Teams = MvcService.BuildTeamsSelectList(teams, cardFilterOptions.TeamId ?? 0) ,
-                    Colleges = MvcService.BuildCollegesSelectList(colleges, cardFilterOptions.CollegeId ?? 0)
+                    Colleges = MvcService.BuildCollegesSelectList(colleges, cardFilterOptions.CollegeId ?? 0),
+                    Graders = MvcService.BuildGradersSelectList(graders, cardFilterOptions.GraderId ?? 0),
+                    Grades = MvcService.BuildGradesSelectList(grades, cardFilterOptions.GradeId ?? 0)
                 }
             };
 

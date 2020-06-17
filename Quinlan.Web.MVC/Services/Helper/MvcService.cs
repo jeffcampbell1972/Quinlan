@@ -108,5 +108,43 @@ namespace Quinlan.MVC.Services
 
             return leaguesList;
         }
+        public static List<SelectListItem> BuildGradersSelectList(List<Grader> graders, int graderId, string allMessage = "N/A")
+        {
+            var gradersList = graders.Select(x => new SelectListItem
+            {
+                Value = x.Id.ToString(),
+                Text = x.Name,
+                Selected = x.Id == graderId
+            })
+            .ToList();
+
+            gradersList.Insert(0, new SelectListItem
+            {
+                Value = "0",
+                Text = string.Format("[{0}]", allMessage),
+                Selected = graderId == 0
+            });
+
+            return gradersList;
+        }
+        public static List<SelectListItem> BuildGradesSelectList(List<Grade> grades, int gradeId, string allMessage = "N/A")
+        {
+            var gradesList = grades.Select(x => new SelectListItem
+            {
+                Value = x.Id.ToString(),
+                Text = x.Name,
+                Selected = x.Id == gradeId
+            })
+            .ToList();
+
+            gradesList.Insert(0, new SelectListItem
+            {
+                Value = "0",
+                Text = string.Format("[{0}]", allMessage),
+                Selected = gradeId == 0
+            });
+
+            return gradesList;
+        }
     }
 }

@@ -102,6 +102,13 @@ namespace Quinlan.Domain.Services
             return colleges;
         }
 
-
+        public List<Grade> GetGrades(MagazineSearchFilterOptions filterOptions)
+        {
+            throw new System.Exception("");
+        }
+        public List<Grader> GetGraders(MagazineSearchFilterOptions filterOptions)
+        {
+            throw new System.Exception("");
+        }
     }
 }

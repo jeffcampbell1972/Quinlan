@@ -2,6 +2,7 @@
 
 using Quinlan.Data.Models;
 using Quinlan.Data.Services;
+using System;
 
 namespace Quinlan.Data
 {
@@ -23,6 +24,7 @@ namespace Quinlan.Data
         public DbSet<Manufacturer> Manufacturers { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductStatus> ProductStatuses { get; set; }
+        public DbSet<ProductType> ProductTypes { get; set; }
         public DbSet<Person> People { get; set; }
         public DbSet<PersonSport> PersonSports { get; set; }
         public DbSet<Set> Sets { get; set; }
