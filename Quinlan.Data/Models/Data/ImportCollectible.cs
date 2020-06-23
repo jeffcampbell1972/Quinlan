@@ -23,6 +23,7 @@ namespace Quinlan.Data.Models
         public string Type { get; set; }
         public string League { get; set; }
         public bool? NotableFlag { get; set; }
+        public string ProductIdentifier { get; set; }
     }
 }
 

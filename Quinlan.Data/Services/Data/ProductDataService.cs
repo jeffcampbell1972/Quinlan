@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-
+using System.Security.Cryptography.X509Certificates;
+using Microsoft.EntityFrameworkCore;
 using Quinlan.Data.Models;
 
 namespace Quinlan.Data.Services
@@ -22,7 +23,7 @@ namespace Quinlan.Data.Services
         }
         public Product Select(int id)
         {
-            var productData = _qDb.Products.SingleOrDefault(x => x.Id == id);
+            var productData = _qDb.Products.Include(x => x.Collectibles).SingleOrDefault(x => x.Id == id);
 
             if (productData == null)
             {

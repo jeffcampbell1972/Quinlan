@@ -27,6 +27,7 @@ namespace Quinlan.Data.Services
                 .Include(x => x.CollectibleType)
                 .Include(x => x.CardType)
                 .Where(x =>
+                    (filterOptions.ProductId == null || x.ProductId == filterOptions.ProductId) &&
                     (filterOptions.SportId == null || x.SportId == filterOptions.SportId) &&
                     (filterOptions.LeagueId == null || x.LeagueId == filterOptions.LeagueId || x.Team.LeagueId == filterOptions.LeagueId) &&
                     (filterOptions.TeamId == null || x.TeamId == filterOptions.TeamId) &&

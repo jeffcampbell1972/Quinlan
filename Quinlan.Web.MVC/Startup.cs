@@ -18,8 +18,10 @@ using Quinlan.Domain.Services;
 using Quinlan.Domain.Models;
 using Quinlan.MVC.Models;
 using Quinlan.MVC.Services;
+using Microsoft.AspNetCore.Identity;
+using Quinlan.Identity.Data;
 
-namespace Quinlan.MVC
+namespace Quinlan.Web.MVC
 {
     public class Startup
     {
@@ -34,10 +36,17 @@ namespace Quinlan.MVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddRazorPages();
 
-            services.AddDbContext<QdbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("QDatabase")));         
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            // Data services required by Domain services
+            services.AddDbContext<QdbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("QDatabase")));
+
+            // Data and Query services required by Domain services
             services.AddScoped<IDataService<Quinlan.Data.Models.Collectible>, CollectibleDataService>();
             services.AddScoped<IDataService<Quinlan.Data.Models.College>, CollegeDataService>();
             services.AddScoped<IDataService<Quinlan.Data.Models.Grade>, GradeDataService>();
@@ -47,11 +56,10 @@ namespace Quinlan.MVC
             services.AddScoped<IDataService<Quinlan.Data.Models.Team>, TeamDataService>();
 
             services.AddScoped<ICollectibleQueryService<CollectibleQueryFilterOptions>, CollectibleQueryService>();
-
             services.AddScoped<IQueryService<Quinlan.Data.Models.Person, PersonQueryFilterOptions>, PersonQueryService>();
             services.AddScoped<IQueryService<Quinlan.Data.Models.Team, TeamQueryFilterOptions>, TeamQueryService>();
 
-            // Domain services required by MVC services
+            // CRUD and Search services required by MVC services
             services.AddScoped<ICrudService<Card>, CardService>();
             services.AddScoped<ICrudService<College>, CollegeService>();
             services.AddScoped<ICrudService<Grade>, GradeService>();
@@ -65,13 +73,12 @@ namespace Quinlan.MVC
             services.AddScoped<ICollectibleSearchService<CardSearch, CardSearchFilterOptions>, CardSearchService>();
             services.AddScoped<ICollectibleSearchService<FigurineSearch, FigurineSearchFilterOptions>, FigurineSearchService>();
             services.AddScoped<ICollectibleSearchService<MagazineSearch, MagazineSearchFilterOptions>, MagazineSearchService>();
-
             services.AddScoped<ISearchService<TeamSearch, TeamSearchFilterOptions>, TeamSearchService>();
             services.AddScoped<ISearchService<PersonSearch, PersonSearchFilterOptions>, PersonSearchService>();
 
             services.AddScoped<ISummaryService<DataSummary>, CollectibleSummaryService>();
 
-            // MVC services required by Controllers
+            // MVC services required by Controllers 
             services.AddScoped<IHomeService<Home>, HomeIndexService>();
             services.AddScoped<IHomeService<Summary>, HomeDetailsService>();
 
@@ -83,6 +90,7 @@ namespace Quinlan.MVC
             services.AddScoped<IDetailsService<CollegeDetails>, CollegeDetailsService>();
             services.AddScoped<IDetailsService<LeagueDetails>, LeagueDetailsService>();
             services.AddScoped<IDetailsService<PersonDetails>, PersonDetailsService>();
+            services.AddScoped<IDetailsService<ProductDetails>, ProductDetailsService>();
             services.AddScoped<IDetailsService<SportDetails>, SportDetailsService>();
             services.AddScoped<IDetailsService<TeamDetails>, TeamDetailsService>();
 
@@ -120,6 +128,7 @@ namespace Quinlan.MVC
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -127,6 +136,8 @@ namespace Quinlan.MVC
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapRazorPages();
             });
         }
     }

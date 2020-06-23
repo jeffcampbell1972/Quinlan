@@ -5,6 +5,9 @@ namespace Quinlan.MVC.Models
 {
     public class CardFilterOptionsViewModel
     {
+        [Display(Name = "Product")]
+        public int ProductId { get; set; }
+
         [Display(Name = "Year")]
         public int? Year { get; set; }
 

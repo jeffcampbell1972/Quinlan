@@ -6,6 +6,7 @@ namespace Quinlan.Data.Models
     {
         public int Id { get; set; }
         public string Identifier { get; set; }
+        public int OwnerId { get; set; }
         public int Year { get; set; }
         public int? CardNumber { get; set; }
         public string Condition { get; set; }
@@ -29,7 +30,8 @@ namespace Quinlan.Data.Models
         public int? SetId { get; set; }
         public int? GradeId { get; set; }
         public int? ProductId { get; set; }
-        
+
+        public Owner Owner { get; set; }
         public ImportCollectible ImportCollectible { get; set; }
         public Person Person { get; set; }
         public Sport Sport { get; set; }

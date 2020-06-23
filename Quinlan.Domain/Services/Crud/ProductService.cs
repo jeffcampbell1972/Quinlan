@@ -39,14 +39,15 @@ namespace Quinlan.Domain.Services
                 throw new ItemNotFoundException("Product not found.  Invalid id provided.");
             }
 
-
-            return new Product
+            var product = new Product
             { 
                 Id = productData.Id, 
                 Identifier = productData.Identifier ,
                 Name = productData.Name ,
-                Price = productData.Price
+                Price = productData.Price 
             };
+
+            return product;
         }
         public void Post(Product product)
         {

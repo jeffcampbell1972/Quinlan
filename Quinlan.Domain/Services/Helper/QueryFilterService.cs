@@ -10,6 +10,7 @@ namespace Quinlan.Domain.Services
         {
             var collectibleFilterOptions = new CollectibleQueryFilterOptions
             {
+                ProductId = cardFilterOptions.ProductId ,
                 CollectibleTypeId = CollectibleTypeCodeService.Card.Id,
                 SportId = cardFilterOptions.SportId,
                 LeagueId = cardFilterOptions.LeagueId,

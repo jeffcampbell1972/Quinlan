@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace Quinlan.MVC
+namespace Quinlan.Web.MVC
 {
     public class Program
     {

@@ -3,6 +3,7 @@ namespace Quinlan.Domain.Models
 {
     public class CardSearchFilterOptions
     {
+        public int? ProductId { get; set; }
         public int? Year { get; set; }
         public bool HOFFlag { get; set; }
         public bool HeismanFlag { get; set; }

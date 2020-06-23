@@ -1,0 +1,101 @@
+﻿@model ProductDetails
+
+@{
+    ViewData["Title"] = @Model.DisplayName;
+}
+
+
+<section id="headerSection">
+    <h1>@Model.DisplayName</h1>
+</section>
+
+<hr />
+
+<section id="totalsSection">
+
+    @await Html.PartialAsync("~/Views/Shared/_SearchTotals.cshtml", @Model.SearchTotalsVM)
+
+</section>
+
+<hr />
+
+<section id="bodySection" style="width: 100%">
+
+    <table style="font-size:9pt; width:100%">
+
+        <tr>
+            <th></th>
+            <th class="YearColumn ColumnHeader">
+                Year
+            </th>
+            <th class="CompanyColumn ColumnHeader">
+                Company / Set
+            </th>
+            <th class="CardNumberColumn ColumnHeader">
+                Card #
+            </th>
+            <th class="AttributesColumn ColumnHeader">
+                Attributes
+            </th>
+            <th class="PersonColumn ColumnHeader">
+                Person
+            </th>
+            <th class="TeamColumn ColumnHeader">
+                Team
+            </th>
+            <th class="GradeColumn ColumnHeader">
+                Grade
+            </th>
+            <th class="CostColumn ColumnHeader">
+                Cost
+            </th>
+            <th class="ValueColumn ColumnHeader">
+                Value
+            </th>
+        </tr>
+
+        @foreach (var card in Model.Cards)
+        {
+            <tr>
+                <td class="ViewColumn">
+                    <a asp-area="" asp-controller="Cards" asp-action="View" asp-route-id=@card.Id>[View]</a>
+                </td>
+                <td class="YearColumn">
+                    @card.Year
+                </td>
+                <td class="CompanyColumn">
+                    @card.Company
+                </td>
+                <td class="CardNumberColumn">
+                    @card.CardNumber
+                </td>
+                <td class="AttributesColumn">
+                    @card.Attributes
+                </td>
+                <td class="PersonColumn">
+                    @if (card.PersonId > 0)
+                    {
+                        <a asp-area="" asp-controller="People" asp-action="Details" asp-route-id=@card.PersonId>@card.PersonName</a> @card.HOF
+                    }
+                    else if (card.PersonName != "")
+                    {
+                        @card.PersonName
+                    }
+                </td>
+                <td class="TeamColumn">
+                    <a asp-area="" asp-controller="Teams" asp-action="Details" asp-route-id=@card.TeamId>@card.TeamName</a>
+                </td>
+                <td class="GradeColumn">
+                    @card.Grade
+                </td>
+                <td class="CostColumn">
+                    @card.FormattedCost
+                </td>
+                <td class="ValueColumn">
+                    @card.FormattedValue
+                </td>
+            </tr>
+        }
+    </table>
+
+</section>

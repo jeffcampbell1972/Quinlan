@@ -14,6 +14,7 @@ namespace Quinlan.MVC.Services
 
             var cardSearchFilterOptions = new CardSearchFilterOptions
             {
+                ProductId = GetNullableId(cardFilterOptions.ProductId) ,
                 SportId = GetNullableId(cardFilterOptions.SportId) ,
                 LeagueId = GetNullableId(cardFilterOptions.LeagueId) ,
                 PersonId = GetNullableId(cardFilterOptions.PersonId) ,

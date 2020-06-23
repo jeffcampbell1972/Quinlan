@@ -33,7 +33,8 @@ create table _BulkInsertCards
     X3	         varchar(max) ,
     Type         varchar(max) ,
     League       varchar(max) ,
-    NotableFlag  bit
+    NotableFlag  bit ,
+    ProductIdentifier varchar(max)
 )
 bulk insert dbo._BulkInsertCards 
 from 'C:\Users\jeffc\source\repos\Quinlan\Quinlan.Initialize\InitFiles\Cards.csv' 
@@ -85,6 +86,20 @@ bulk insert dbo._BulkInsertColleges
 from 'C:\Users\jeffc\source\repos\Quinlan\Quinlan.Initialize\InitFiles\Colleges.csv' 
 with ( FIELDTERMINATOR = ',', ROWTERMINATOR = '\n' )
 
+-- Products.csv
+create table dbo._BulkInsertProducts
+(
+    Identifier varchar(max) ,
+    Name varchar(max) ,
+    Price decimal ,
+    ProductType varchar(max) ,
+    ProductStatus varchar(max) ,
+    NotSure bit
+)
+bulk insert dbo._BulkInsertProducts 
+from 'C:\Users\jeffc\source\repos\Quinlan\Quinlan.Initialize\InitFiles\Products.csv' 
+with ( FIELDTERMINATOR = ',', ROWTERMINATOR = '\n' )
+
 --------------------------------------------------------------------------------------------------
 -- Copy from BULK INSERT tables to IMPORT tables    
 --------------------------------------------------------------------------------------------------
@@ -93,6 +108,7 @@ insert into ImportCollectibles select * from _BulkInsertCards
 insert into ImportPeople select * from _BulkInsertPeople
 insert into ImportTeams select * from _BulkInsertTeams
 insert into ImportColleges select * from _BulkInsertColleges
+insert into ImportProducts select * from _BulkInsertProducts
 
 --------------------------------------------------------------------------------------------------
 -- Drop BULK INSERT tables
@@ -102,6 +118,27 @@ drop table _BulkInsertCards
 drop table _BulkInsertColleges
 drop table _BulkInsertPeople
 drop table _BulkInsertTeams
+drop table _BulkInsertProducts
+
+--------------------------------------------------------------------
+-- Create the primary users
+--------------------------------------------------------------------
+
+declare @SusanId int
+declare @JeffId int
+
+insert into People ( Identifier, FirstName, LastName ) values ( 'SusanQuinlan', 'Susan', 'Quinlan' )
+select @SusanId = Scope_Identity()
+
+insert into People ( Identifier, FirstName, LastName ) values ( 'JeffCampbell1972', 'Jeff', 'Campbell' )
+select @JeffId = Scope_Identity()
+
+insert into Owners ( Id ) values ( @SusanId )
+insert into Owners ( Id ) values ( @JeffId )
+
+insert into Users ( Login, Password, PersonId ) values ( 'susanhadyquinlan@gmail.com', 'Password', @SusanId )
+insert into Users ( Login, Password, PersonId ) values ( 'jeffcampbell1972@outlook.com', 'Password', @JeffId )
+insert into Users ( Login, Password, PersonId ) values ( 'Administrator', 'Password', null )
 
 --------------------------------------------------------------------
 -- Import into live tables 
@@ -115,6 +152,19 @@ select Identifier,
     Nickname ,
     Id
 from ImportColleges
+
+-- Products
+
+insert into Products (Identifier, Name, Price, ProductTypeId, ProductStatusId, OwnerId)
+select p.Identifier,
+    p.Name ,
+    Price ,
+    t.Id ,
+    s.Id ,
+    @SusanId
+from ImportProducts p
+inner join ProductStatuses s on s.Identifier = p.ProductStatus
+inner join ProductTypes t on t.Identifier = p.ProductType
 
 -- People
 
@@ -241,17 +291,12 @@ and Company <> ''
 
 update ImportCollectibles set SubjectType = 'Manager' where Description like '%MG%'
 update ImportCollectibles set SubjectType = 'Coach' where Description like '%CO%'
-
 update ImportCollectibles set SubjectType = 'SuperBowl' where Description like '%SB%'
-
 update ImportCollectibles set SubjectType = 'RecordBreaker' where Description like '%RB%'
-
 update ImportCollectibles set SubjectType = 'AllStar' where Description like '%AS%'
 update ImportCollectibles set SubjectType = 'AllPro' where Description like '%AP%'
 update ImportCollectibles set SubjectType = 'ProBowl' where Description like '%Pro Bowl%'
-
 update ImportCollectibles set SubjectType = 'TeamLeader' where Description like '%TL%'  
-
 update ImportCollectibles set SubjectType = 'LeagueLeader' where Description like '%AL%'  -- assist leader
 update ImportCollectibles set SubjectType = 'LeagueLeader' where Description like '%BL%'  -- batting leader
 update ImportCollectibles set SubjectType = 'LeagueLeader' where Description like '%SL%'  -- scoring leader
@@ -259,15 +304,14 @@ update ImportCollectibles set SubjectType = 'LeagueLeader' where Description lik
 update ImportCollectibles set SubjectType = 'LeagueLeader' where Description like '%FG%'  -- field goal leader
 update ImportCollectibles set SubjectType = 'LeagueLeader' where Description like '%HR%'  -- home run leader
 update ImportCollectibles set SubjectType = 'LeagueLeader' where Description like '%RBI%'  -- rbi leader => must come after 'RB'
-
 update ImportCollectibles set SubjectType = 'MVP' where Description like '%MVP%'  
-
 update ImportCollectibles set SubjectType = 'Other' where Description like '%FB3%'  
 
 -- Collectibles
 
 insert into Collectibles (
     Identifier ,
+    OwnerId ,
     PersonId ,
     Year ,
     CardNumber ,
@@ -288,9 +332,11 @@ insert into Collectibles (
     CollectibleTypeId,
     CardTypeId ,
     CollectibleStatusId,
-    ImportCollectibleId )
+    ImportCollectibleId ,
+    ProductId )
 select 
     convert(varchar(4), Year) + i.Company + case when cardNumber > 0 then convert(varchar(5), CardNumber) else i.LastName + IsNull(i.FirstName,'') end as Identifier ,
+    @SusanId as OwnerId ,
     p.Id as PersonId ,
     Year ,
     case when CardNumber > 0 then CardNumber else null end ,
@@ -314,7 +360,8 @@ select
     t.Id as CollectibleTypeId ,
     ct.Id as CardTypeId ,
     1 as CollectibleStatusId , -- pending status
-    i.Id as ImportCollectiblesId
+    i.Id as ImportCollectiblesId ,
+    prod.Id
 from ImportCollectibles i
 inner join CollectibleTypes t on t.Identifier = i.Type
 inner join Sets sets on sets.Name = i.Company
@@ -323,6 +370,7 @@ left outer join Sports s on s.Identifier = i.Sport
 left outer join Leagues l on l.Identifier = i.League
 left outer join Grades g on g.Name = i.Grade
 left outer join CardTypes ct on ct.Identifier = i.SubjectType
+left outer join Products prod on i.ProductIdentifier = prod.Identifier
 where year is not null
 and SubjectType != 'Mascot'
 and SubjectType != 'Military'
@@ -337,6 +385,8 @@ select distinct PersonId, SportId
 from collectibles 
 where sportid is not null 
 and personid is not null
+
+
 
 end -- if @importCollectibleCount = 0
 

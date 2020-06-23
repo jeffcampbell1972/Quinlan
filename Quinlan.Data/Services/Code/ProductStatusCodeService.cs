@@ -36,8 +36,8 @@ namespace Quinlan.Data.Services
         static private ProductStatus forsale;
         static private ProductStatus sold;
 
-        static public ProductStatus Pending { get { return pending ?? (pending = new ProductStatus { Id = 1, Name = "Pending" }); } }
-        static public ProductStatus ForSale { get { return forsale ?? (forsale = new ProductStatus { Id = 2, Name = "For Sale" }); } }
-        static public ProductStatus Sold { get { return sold ?? (sold = new ProductStatus { Id = 3, Name = "Sold" }); } }
+        static public ProductStatus Pending { get { return pending ?? (pending = new ProductStatus { Id = 1, Identifier = "Pending", Name = "Pending" }); } }
+        static public ProductStatus ForSale { get { return forsale ?? (forsale = new ProductStatus { Id = 2, Identifier = "ForSale", Name = "For Sale" }); } }
+        static public ProductStatus Sold { get { return sold ?? (sold = new ProductStatus { Id = 3, Identifier = "Sold", Name = "Sold" }); } }
     }
 }

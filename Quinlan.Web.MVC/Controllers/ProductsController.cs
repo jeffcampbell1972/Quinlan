@@ -12,10 +12,12 @@ namespace Quinlan.Controllers
         private readonly ILogger<CardsController> _logger;
 
         private static IIndexService<ProductIndex,ProductFilterOptionsViewModel> _productIndexService;
-        public ProductsController(ILogger<CardsController> logger, IIndexService<ProductIndex,ProductFilterOptionsViewModel> productIndexService)
+        private static IDetailsService<ProductDetails> _productDetailsService;
+        public ProductsController(ILogger<CardsController> logger, IIndexService<ProductIndex,ProductFilterOptionsViewModel> productIndexService, IDetailsService<ProductDetails> productDetailsService)
         {
             _logger = logger;
             _productIndexService = productIndexService;
+            _productDetailsService = productDetailsService;
         }
         public IActionResult Index()
         {
@@ -32,6 +34,11 @@ namespace Quinlan.Controllers
                 throw ex;
             }
         }
+        public IActionResult Details(int id)
+        {
+            var vm = _productDetailsService.Build(id, null);
 
+            return View(vm);
+        }
     }
 }

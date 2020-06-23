@@ -9,64 +9,37 @@ namespace Quinlan.MVC.Services
 {
     public class HomeIndexService : IHomeService<Home>
     {
-        ICollectibleSearchService<CardSearch, CardSearchFilterOptions> _cardSearchService;
-        ISearchService<TeamSearch, TeamSearchFilterOptions> _teamSearchService;
-        public HomeIndexService(ISearchService<TeamSearch, TeamSearchFilterOptions> teamSearchService, ICollectibleSearchService<CardSearch, CardSearchFilterOptions> cardSearchService)
+        ICrudService<Product> _productService;
+        public HomeIndexService(ICrudService<Product> productService)
         {
-            _teamSearchService = teamSearchService;
-            _cardSearchService = cardSearchService;
+            _productService = productService;
         }
         public Home Build()
         {
-            var notableCards = GetNotableCards();
-            var notableTeams = GetNotableTeams();
-
             var vm = new Home
             {
-                WelcomeMessage = "Lots of great deals in there!",
+                WelcomeMessage = "He's got a lot of good cards in there!",
                 Title = "Home" ,
                 Header = "Welcome to Q's Closet",
                 IsSeeded = true ,
-                NotableCards = notableCards ,
-                NotableTeams = notableTeams ,
-                GolfId = 5,
+                FeaturedProducts = GetProducts() ,
+                GolfId = 5
             };
 
             return vm;
         }
-        private List<TeamListItemViewModel> GetNotableTeams()
+        private List<ProductListItemViewModel> GetProducts()
         {
-            var filterOptions = new TeamSearchFilterOptions
-            {
-                NotableFlag = true
-            };
+            var products = _productService.Get();
 
-            var teamSearch = _teamSearchService.Get(filterOptions);
-
-            return teamSearch.Teams.Select(x => new TeamListItemViewModel
+            var productsList = products.Select(x => new ProductListItemViewModel
             {
                 Id = x.Id ,
-                LeagueName = x.League.Name ,
-                SportName = x.Sport.Name ,
-                Name = x.ToString()
+                Name = x.Name
             })
             .ToList();
-        }
-        private List<CardListItemViewModel> GetNotableCards()
-        {
-            var filterOptions = new CardSearchFilterOptions
-            {
-                NotableFlag = true
-            };
 
-            var collectibleSearch = _cardSearchService.Get(filterOptions);
-
-            return collectibleSearch.Cards.Select(x => new CardListItemViewModel
-            {
-                Id = x.Id,
-                Title = x.Title
-            })
-            .ToList();
+            return productsList;
         }
     }
 }

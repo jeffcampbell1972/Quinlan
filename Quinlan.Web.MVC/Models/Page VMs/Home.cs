@@ -13,7 +13,6 @@ namespace Quinlan.MVC.Models
         public int GolfId { get; set; }
         public int CFLId { get; set; }
 
-        public List<TeamListItemViewModel> NotableTeams { get; set; }
-        public List<CardListItemViewModel> NotableCards { get; set; }
+        public List<ProductListItemViewModel> FeaturedProducts { get; set; }
     }
 }

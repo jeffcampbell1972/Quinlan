@@ -36,8 +36,8 @@ namespace Quinlan.Data.Services
         static private ProductType lot;
         static private ProductType collection;
 
-        static public ProductType Single { get { return single ?? (single = new ProductType { Id = 1, Name = "Single" }); } }
-        static public ProductType Lot { get { return lot ?? (lot = new ProductType { Id = 2, Name = "Lot" }); } }
-        static public ProductType Collection { get { return collection ?? (collection = new ProductType { Id = 3, Name = "Collection" }); } }
+        static public ProductType Single { get { return single ?? (single = new ProductType { Id = 1, Identifier = "Single", Name = "Single Cards" }); } }
+        static public ProductType Lot { get { return lot ?? (lot = new ProductType { Id = 2, Identifier = "Lot", Name = "Lot of Multiple Cards" }); } }
+        static public ProductType Collection { get { return collection ?? (collection = new ProductType { Id = 3, Identifier = "Collection", Name = "Collection" }); } }
     }
 }

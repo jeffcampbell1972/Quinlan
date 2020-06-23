@@ -18,9 +18,11 @@ namespace Quinlan.Data
         public DbSet<ImportCollectible> ImportCollectibles { get; set; }
         public DbSet<ImportCollege> ImportColleges { get; set; }
         public DbSet<ImportPerson> ImportPeople { get; set; }
+        public DbSet<ImportProduct> ImportProducts { get; set; }
         public DbSet<ImportTeam> ImportTeams { get; set; }
         public DbSet<League> Leagues { get; set; }
         public DbSet<Organization> Organizations { get; set; }
+        public DbSet<Owner> Owners { get; set; }
         public DbSet<Manufacturer> Manufacturers { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductStatus> ProductStatuses { get; set; }
@@ -30,6 +32,7 @@ namespace Quinlan.Data
         public DbSet<Set> Sets { get; set; }
         public DbSet<Sport> Sports { get; set; }
         public DbSet<Team> Teams { get; set; }
+        public DbSet<User> Users { get; set; }
 
         public QdbContext()
         {
@@ -71,6 +74,7 @@ namespace Quinlan.Data
             modelBuilder.Entity<CollectibleType>().HasData(CollectibleTypeCodeService.Select());
             modelBuilder.Entity<League>().HasData(LeagueCodeService.Select());
             modelBuilder.Entity<ProductStatus>().HasData(ProductStatusCodeService.Select());
+            modelBuilder.Entity<ProductType>().HasData(ProductTypeCodeService.Select());
 
             base.OnModelCreating(modelBuilder);
         }

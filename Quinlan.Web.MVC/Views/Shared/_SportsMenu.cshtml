@@ -1,0 +1,26 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+
+    <ul class="navbar-nav">
+        @if (SignInManager.IsSignedIn(User))
+        {
+
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Sports" asp-action="Details" asp-route-id="1">Baseball</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Sports" asp-action="Details" asp-route-id="2">Basketball</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Sports" asp-action="Details" asp-route-id="3">Football</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Sports" asp-action="Details" asp-route-id="4">Hockey</a>
+            </li>
+            @*<li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Sports" asp-action="Details" asp-route-id="5">Golf</a>
+            </li>*@
+
+
+        }
+    </ul>

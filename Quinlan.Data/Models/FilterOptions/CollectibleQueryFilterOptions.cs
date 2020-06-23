@@ -3,6 +3,7 @@ namespace Quinlan.Data.FilterOptions
 {
     public class CollectibleQueryFilterOptions
     {
+        public int? ProductId { get; set; }
         public int? Year { get; set; }
         public int? CollectibleTypeId { get; set; }
         public bool HOFFlag { get; set; }

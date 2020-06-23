@@ -19,26 +19,14 @@
 else
 {
 <section id="bodySection">
-
-    <nav style="float:left; width:50%">
+    <nav id="featuredProducts">
         <header>
-            Q's Best Cards
+            Featured Products
         </header>
         <ul>
-            @foreach (var card in Model.NotableCards)
+            @foreach (var product in Model.FeaturedProducts)
             {
-                <li><a asp-area="" asp-controller="Cards" asp-action="View" asp-route-id=@card.Id>@card.Title</a></li>
-            }
-        </ul>
-    </nav>
-    <nav style="float:left; width:50%">
-        <header>
-            Q's Favorite Teams
-        </header>
-        <ul>
-            @foreach (var team in Model.NotableTeams)
-            {
-                <li><a asp-area="" asp-controller="Teams" asp-action="Details" asp-route-id=@team.Id>@team.Name</a></li>
+                <li><a asp-area="" asp-controller="Products" asp-action="Details" asp-route-id=@product.Id>@product.Name</a></li>
             }
         </ul>
     </nav>

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 using Quinlan.MVC.Models;
 using Quinlan.MVC.Services;
@@ -12,6 +13,7 @@ namespace Quinlan.MVC.Controllers
         {
             _sportDetailsService = sportDetailsService;
         }
+        [Authorize]
         public IActionResult Details(int id)
         {
             var vm = _sportDetailsService.Build(id, null);
