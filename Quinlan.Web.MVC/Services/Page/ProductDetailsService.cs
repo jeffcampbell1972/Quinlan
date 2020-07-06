@@ -79,7 +79,8 @@ namespace Quinlan.MVC.Services
             {
                 Id = product.Id ,
                 Identifier = product.Identifier ,
-                DisplayName = string.Format("{0} Cards", product.Name) ,
+                DisplayName = product.Name ,
+                Price = product.Price ,
                 Cards = cards,
                 SearchTotalsVM = new SearchTotalsViewModel
                 {

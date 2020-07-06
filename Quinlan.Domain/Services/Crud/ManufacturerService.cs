@@ -36,7 +36,7 @@ namespace Quinlan.Domain.Services
 
             if (manufacturerData == null)
             {
-                throw new ItemNotFoundException("Manufacturer not found.  Invalid id provided.");
+                throw new DataNotFoundException("Manufacturer not found.  Invalid id provided.");
             }
 
             return new Manufacturer 

@@ -36,7 +36,7 @@ namespace Quinlan.Domain.Services
 
             if (graderData == null)
             {
-                throw new ItemNotFoundException("Grader not found.  Invalid id provided.");
+                throw new DataNotFoundException("Grader not found.  Invalid id provided.");
             }
 
             return new Grader

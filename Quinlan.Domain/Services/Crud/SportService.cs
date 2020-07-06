@@ -35,7 +35,7 @@ namespace Quinlan.Domain.Services
 
                 if (sportData == null)
                 {
-                    throw new ItemNotFoundException("Sport not found.  Invalid id provided.");
+                    throw new DataNotFoundException("Sport not found.  Invalid id provided.");
                 }
 
                 var sport = new Sport
@@ -49,7 +49,7 @@ namespace Quinlan.Domain.Services
             }
             catch
             {
-                throw new ItemNotFoundException("Sport not found.  Invalid id provided.");
+                throw new DataNotFoundException("Sport not found.  Invalid id provided.");
             }      
         }
         public void Post(Sport sport)

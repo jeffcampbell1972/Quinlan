@@ -24,7 +24,7 @@ namespace Quinlan.Domain.Services
 
             if (figurineData == null)
             {
-                throw new ItemNotFoundException("Figurine not found.  Invalid id provided.");
+                throw new DataNotFoundException("Figurine not found.  Invalid id provided.");
             }
             if (figurineData.CollectibleTypeId != CollectibleTypeCodeService.Figure.Id)
             {

@@ -23,7 +23,7 @@ namespace Quinlan.MVC.Services
                 Products = products.Select(x => new ProductListItemViewModel
                 {
                     Id = x.Id,
-                    Name = x.Name
+                    Description = x.Name
                 })
                 .ToList()
             };

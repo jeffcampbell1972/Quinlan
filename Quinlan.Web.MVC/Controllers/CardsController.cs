@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -21,6 +22,7 @@ namespace Quinlan.Controllers
             _cardEditService = cardEditService;
             _cardFormService = cardFormService;
         }
+
         public IActionResult View(int id)
         {
             try
@@ -36,6 +38,8 @@ namespace Quinlan.Controllers
                 throw ex;
             }
         }
+
+        [Authorize]
         public IActionResult Edit(int id)
         {
             var cardVM = _cardEditService.Build(id);

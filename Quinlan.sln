@@ -22,8 +22,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quinlan.Web.SPA", "Quinlan.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quinlan.Test", "Quinlan.Test\Quinlan.Test.csproj", "{0CB92899-A075-43E3-A474-7AE6FD9FA1C0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quinlan.Web", "Quinlan.Web\Quinlan.Web.csproj", "{1E7170E3-180E-47A5-851C-2DDEDAE26B89}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,10 +52,6 @@ Global
 		{0CB92899-A075-43E3-A474-7AE6FD9FA1C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0CB92899-A075-43E3-A474-7AE6FD9FA1C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0CB92899-A075-43E3-A474-7AE6FD9FA1C0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1E7170E3-180E-47A5-851C-2DDEDAE26B89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1E7170E3-180E-47A5-851C-2DDEDAE26B89}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1E7170E3-180E-47A5-851C-2DDEDAE26B89}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1E7170E3-180E-47A5-851C-2DDEDAE26B89}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

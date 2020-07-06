@@ -20,6 +20,7 @@ using Quinlan.MVC.Models;
 using Quinlan.MVC.Services;
 using Microsoft.AspNetCore.Identity;
 using Quinlan.Identity.Data;
+using System.Runtime.CompilerServices;
 
 namespace Quinlan.Web.MVC
 {
@@ -41,7 +42,9 @@ namespace Quinlan.Web.MVC
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddDbContext<QdbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("QDatabase")));
@@ -111,7 +114,7 @@ namespace Quinlan.Web.MVC
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
@@ -139,6 +142,52 @@ namespace Quinlan.Web.MVC
 
                 endpoints.MapRazorPages();
             });
+
+            CreateRoles(serviceProvider).Wait();
+        }
+        private async Task CreateRoles(IServiceProvider serviceProvider)
+        {
+            var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            var UserManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
+
+            IdentityResult roleResult;
+            //here in this line we are adding Admin Role
+            var adminCheck = await RoleManager.RoleExistsAsync("Admin");
+            if (!adminCheck)
+            {
+                //here in this line we are creating admin role and seed it to the database
+                roleResult = await RoleManager.CreateAsync(new IdentityRole("Admin"));
+            }
+            var ownerCheck = await RoleManager.RoleExistsAsync("Owner");
+            if (!ownerCheck)
+            {
+                //here in this line we are creating admin role and seed it to the database
+                roleResult = await RoleManager.CreateAsync(new IdentityRole("Owner"));
+            }
+
+            var susan = await UserManager.FindByNameAsync("susan@quinlan.com");
+            if (susan == null)
+            {
+                var susanResult = await UserManager.CreateAsync(new IdentityUser 
+                { 
+                    UserName = "susan@quinlan.com", 
+                    Email = "susan@quinlan.com" , 
+                    PasswordHash = "AQAAAAEAACcQAAAAEGuSDVqbXDPUu6upDkeJVCRDk2V1sV1ylJJ8MT5lRN4J/OIPk5I0hi9rwoZ9vIUX1w=="   // P@ssword1
+                });
+                if (susanResult.Succeeded)
+                {
+                    susan = await UserManager.FindByNameAsync("susan@quinlan.com");
+                }
+                else
+                {
+                    return;
+                }
+            }
+            var susanOwnerCheck = await UserManager.IsInRoleAsync(susan, "Owner");
+            if (!susanOwnerCheck)
+            {
+                var x = await UserManager.AddToRoleAsync(susan, "Owner");
+            }
         }
     }
 }

@@ -18,18 +18,54 @@
 }
 else
 {
-<section id="bodySection">
-    <nav id="featuredProducts">
+<section id="bodySection" style="width: 100%">
+    <section id="singleCardProducts" style="width:40%">
         <header>
-            Featured Products
+            Single Cards
+        </header>
+        <table style="width:100%">
+            @foreach (var product in Model.SingleCardProducts)
+            {
+            <tr>
+                <td class="width:75%; ">
+                    <a asp-area="" asp-controller="Products" asp-action="Details" asp-route-id=@product.Id>@product.Description</a>
+                </td>
+                <td class="width:25%" align="right">
+                    @product.Price
+                </td>
+            </tr>
+            }
+        </table>
+    </section>
+    @if (Model.CardLotProducts.Count > 0)
+    {
+        <br />
+    <nav id="cardLotProducts">
+        <header>
+            Card Lots
         </header>
         <ul>
-            @foreach (var product in Model.FeaturedProducts)
+            @foreach (var product in Model.CardLotProducts)
             {
-                <li><a asp-area="" asp-controller="Products" asp-action="Details" asp-route-id=@product.Id>@product.Name</a></li>
+                <li><a asp-area="" asp-controller="Products" asp-action="Details" asp-route-id=@product.Id>@product.Description</a></li>
             }
         </ul>
     </nav>
-
+    }
+    @if (Model.CollectionProducts.Count > 0)
+    {
+        <br />
+    <nav id="collectionProducts">
+        <header>
+            Entire Collections
+        </header>
+        <ul>
+            @foreach (var product in Model.CollectionProducts)
+            {
+                <li><a asp-area="" asp-controller="Products" asp-action="Details" asp-route-id=@product.Id>@product.Description</a></li>
+            }
+        </ul>
+    </nav>
+    }
 </section>
 }

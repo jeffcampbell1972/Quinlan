@@ -24,7 +24,7 @@ namespace Quinlan.Domain.Services
 
             if (magazineData == null)
             {
-                throw new ItemNotFoundException("MagazineService not found.  Invalid id provided.");
+                throw new DataNotFoundException("MagazineService not found.  Invalid id provided.");
             }
             if (magazineData.CollectibleTypeId != CollectibleTypeCodeService.Magazine.Id)
             {

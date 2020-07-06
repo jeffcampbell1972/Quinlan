@@ -34,7 +34,7 @@ namespace Quinlan.Domain.Services
 
             if (leagueData == null)
             {
-                throw new ItemNotFoundException("League not found.  Invalid id provided.");
+                throw new DataNotFoundException("League not found.  Invalid id provided.");
             }
 
             return new League 

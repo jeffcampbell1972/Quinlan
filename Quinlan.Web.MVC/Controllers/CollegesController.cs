@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 using Quinlan.MVC.Models;
 using Quinlan.MVC.Services;
@@ -17,6 +18,8 @@ namespace Quinlan.MVC.Controllers
             _collegeEditService = collegeEditService;
             _collegeFormService = collegeFormService;
         }
+
+        [Authorize]
         public IActionResult Details(int id)
         {
             var vm = _collegeDetailsService.Build(id, null);
@@ -30,6 +33,8 @@ namespace Quinlan.MVC.Controllers
 
             return View(vm);
         }
+
+        [Authorize]
         public IActionResult Edit(int id)
         {
             var collegeVM = _collegeEditService.Build(id);

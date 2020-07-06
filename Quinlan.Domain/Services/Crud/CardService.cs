@@ -24,7 +24,7 @@ namespace Quinlan.Domain.Services
 
             if (collectibleData == null)
             {
-                throw new ItemNotFoundException("Card not found.  Invalid id provided.");
+                throw new DataNotFoundException("Card not found.  Invalid id provided.");
             }
             if (collectibleData.CollectibleTypeId != CollectibleTypeCodeService.Card.Id)
             {

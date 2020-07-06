@@ -36,7 +36,7 @@ namespace Quinlan.Domain.Services
 
             if (collegeData == null)
             {
-                throw new ItemNotFoundException("College not found.  Invalid id provided.");
+                throw new DataNotFoundException("College not found.  Invalid id provided.");
             }
 
 

@@ -17,13 +17,17 @@ namespace Quinlan.Data.Services
         public List<Product> Select()
         {
             var productsData = _qDb.Products
-               .ToList();
+                .Include(x => x.ProductType)
+                .ToList();
 
             return productsData;
         }
         public Product Select(int id)
         {
-            var productData = _qDb.Products.Include(x => x.Collectibles).SingleOrDefault(x => x.Id == id);
+            var productData = _qDb.Products
+                .Include(x => x.Collectibles)
+                .Include(x => x.ProductType)
+                .SingleOrDefault(x => x.Id == id);
 
             if (productData == null)
             {

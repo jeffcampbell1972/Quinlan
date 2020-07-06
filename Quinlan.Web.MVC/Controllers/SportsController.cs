@@ -13,7 +13,8 @@ namespace Quinlan.MVC.Controllers
         {
             _sportDetailsService = sportDetailsService;
         }
-        [Authorize]
+
+        [Authorize(Roles = "Owner")]
         public IActionResult Details(int id)
         {
             var vm = _sportDetailsService.Build(id, null);

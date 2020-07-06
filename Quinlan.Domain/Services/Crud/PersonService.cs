@@ -34,7 +34,7 @@ namespace Quinlan.Domain.Services
 
             if (personData == null)
             {
-                throw new ItemNotFoundException("Person not found.  Invalid id provided.");
+                throw new DataNotFoundException("Person not found.  Invalid id provided.");
             }
 
             var sportsData = SportCodeService.Select();

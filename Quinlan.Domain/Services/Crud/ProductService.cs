@@ -24,7 +24,13 @@ namespace Quinlan.Domain.Services
                     Id = x.Id,
                     Identifier = x.Identifier ,
                     Name = x.Name ,
-                    Price = x.Price
+                    Price = x.Price ?? -1 ,
+                    ProductType = new ProductType 
+                    { 
+                        Id = x.ProductType.Id, 
+                        Identifier = x.ProductType.Identifier, 
+                        Name = x.ProductType.Name 
+                    }
                 })
                 .ToList();
 
@@ -36,7 +42,7 @@ namespace Quinlan.Domain.Services
 
             if (productData == null)
             {
-                throw new ItemNotFoundException("Product not found.  Invalid id provided.");
+                throw new DataNotFoundException("Product not found.  Invalid id provided.");
             }
 
             var product = new Product
@@ -44,7 +50,7 @@ namespace Quinlan.Domain.Services
                 Id = productData.Id, 
                 Identifier = productData.Identifier ,
                 Name = productData.Name ,
-                Price = productData.Price 
+                Price = productData.Price ?? -1
             };
 
             return product;

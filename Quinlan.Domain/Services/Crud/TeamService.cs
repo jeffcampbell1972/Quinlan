@@ -36,7 +36,7 @@ namespace Quinlan.Domain.Services
 
             if (teamData == null)
             {
-                throw new ItemNotFoundException("Team not found.  Invalid id provided.");
+                throw new DataNotFoundException("Team not found.  Invalid id provided.");
             }
 
             return new Team 

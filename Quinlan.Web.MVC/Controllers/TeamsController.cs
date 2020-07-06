@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 using Quinlan.MVC.Models;
 using Quinlan.MVC.Services;
@@ -20,6 +21,8 @@ namespace Quinlan.MVC.Controllers
             _teamFormService = teamFormService;
             _teamIndexService = teamIndexService;
         }
+
+        [Authorize]
         public IActionResult Details(int id)
         {
             var vm = _teamDetailsService.Build(id, null);
@@ -33,6 +36,8 @@ namespace Quinlan.MVC.Controllers
 
             return View(vm);
         }
+
+        [Authorize]
         public IActionResult Index()
         {
             var teamVM = _teamIndexService.Build(null);
@@ -46,6 +51,8 @@ namespace Quinlan.MVC.Controllers
 
             return View(teamVM);
         }
+
+        [Authorize]
         public IActionResult Edit(int id)
         {
             var teamVM = _teamEditService.Build(id);
