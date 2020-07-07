@@ -16,7 +16,7 @@ namespace Quinlan.MVC.Services
             _collegeService = collegeService;
             _cardSearchService = cardSearchService;
         }
-        public CollegeDetails Build(int id, CardFilterOptionsViewModel filterOptionsVM)
+        public CollegeDetails Build(int id, CardFilterOptionsViewModel filterOptionsVM, bool hasOwnerRights)
         {
             if (filterOptionsVM == null)
             {
@@ -62,6 +62,7 @@ namespace Quinlan.MVC.Services
                 Id = college.Id , 
                 Identifier = college.Identifier , 
                 DisplayName = college.ToString() ,
+                HasOwnerRights = hasOwnerRights,
                 Cards = cards,
                 SearchTotalsVM = new SearchTotalsViewModel
                 {

@@ -13,6 +13,7 @@ namespace Quinlan.MVC.Models
         public string Identifier { get; set; }
         public string DisplayName { get; set; }
         public decimal Price { get; set; }
+        public bool HasOwnerRights { get; set; }
         public List<CardListItemViewModel> Cards { get; set; }
         public CardSearchViewModel FilterOptionsVM { get; set; }
         public SearchTotalsViewModel SearchTotalsVM { get; set; }

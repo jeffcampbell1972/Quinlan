@@ -17,7 +17,7 @@ namespace Quinlan.MVC.Services
             _productService = productService;
             _cardSearchService = cardSearchService;
         }
-        public ProductDetails Build(int id, CardFilterOptionsViewModel filterOptionsVM)
+        public ProductDetails Build(int id, CardFilterOptionsViewModel filterOptionsVM, bool hasOwnerRights)
         {
             if (filterOptionsVM == null)
             {
@@ -81,6 +81,7 @@ namespace Quinlan.MVC.Services
                 Identifier = product.Identifier ,
                 DisplayName = product.Name ,
                 Price = product.Price ,
+                HasOwnerRights = false ,  // need to revisit this
                 Cards = cards,
                 SearchTotalsVM = new SearchTotalsViewModel
                 {

@@ -25,14 +25,15 @@ namespace Quinlan.MVC.Controllers
         [Authorize]
         public IActionResult Details(int id)
         {
-            var vm = _teamDetailsService.Build(id, null);
+            var vm = _teamDetailsService.Build(id, null, User.IsInRole("Owner"));
 
             return View(vm);
         }
+        [Authorize]
         [HttpPost]
         public IActionResult Details(int id, CardFilterOptionsViewModel filterOptions)
         {
-            var vm = _teamDetailsService.Build(id, filterOptions);
+            var vm = _teamDetailsService.Build(id, filterOptions, User.IsInRole("Owner"));
 
             return View(vm);
         }
@@ -44,6 +45,7 @@ namespace Quinlan.MVC.Controllers
 
             return View(teamVM);
         }
+        [Authorize]
         [HttpPost]
         public IActionResult Index(TeamFilterOptionsViewModel teamFilterOptionsViewModel)
         {
@@ -52,13 +54,14 @@ namespace Quinlan.MVC.Controllers
             return View(teamVM);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Owner")]
         public IActionResult Edit(int id)
         {
             var teamVM = _teamEditService.Build(id);
 
             return View(teamVM);
         }
+        [Authorize(Roles = "Owner")]
         [HttpPost]
         public IActionResult Edit(int id, TeamViewModel teamVM)
         {

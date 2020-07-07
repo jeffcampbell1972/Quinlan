@@ -39,13 +39,14 @@ namespace Quinlan.Controllers
             }
         }
 
-        [Authorize]
+        [Authorize(Roles = "Owner")]
         public IActionResult Edit(int id)
         {
             var cardVM = _cardEditService.Build(id);
 
             return View(cardVM);
         }
+        [Authorize(Roles = "Owner")]
         [HttpPost]
         public IActionResult Edit(int id, CardViewModel cardVM)
         {

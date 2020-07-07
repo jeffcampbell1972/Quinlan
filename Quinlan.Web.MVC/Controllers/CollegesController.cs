@@ -22,25 +22,27 @@ namespace Quinlan.MVC.Controllers
         [Authorize]
         public IActionResult Details(int id)
         {
-            var vm = _collegeDetailsService.Build(id, null);
+            var vm = _collegeDetailsService.Build(id, null, User.IsInRole("Owner"));
 
             return View(vm);
         }
+        [Authorize]
         [HttpPost]
         public IActionResult Details(int id, CardFilterOptionsViewModel filterOptions)
         {
-            var vm = _collegeDetailsService.Build(id, filterOptions);
+            var vm = _collegeDetailsService.Build(id, filterOptions, User.IsInRole("Owner"));
 
             return View(vm);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Owner")]
         public IActionResult Edit(int id)
         {
             var collegeVM = _collegeEditService.Build(id);
 
             return View(collegeVM);
         }
+        [Authorize(Roles = "Owner")]
         [HttpPost]
         public IActionResult Edit(int id, CollegeViewModel collegeVM)
         {

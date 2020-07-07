@@ -16,7 +16,7 @@ namespace Quinlan.MVC.Services
             _personService = personService;
             _cardSearchService = cardSearchService;
         }
-        public PersonDetails Build(int id, CardFilterOptionsViewModel filterOptionsVM)
+        public PersonDetails Build(int id, CardFilterOptionsViewModel filterOptionsVM, bool hasOwnerRights)
         {
             if (filterOptionsVM == null)
             {
@@ -72,6 +72,7 @@ namespace Quinlan.MVC.Services
                 Identifier = person.Identifier , 
                 Cards = cards,
                 DisplayName = displayName,
+                HasOwnerRights = hasOwnerRights,
                 SearchTotalsVM = new SearchTotalsViewModel
                 {
                     NumCollectibles = cardSearch.NumCards,

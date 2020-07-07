@@ -36,7 +36,7 @@ namespace Quinlan.Controllers
         }
         public IActionResult Details(int id)
         {
-            var vm = _productDetailsService.Build(id, null);
+            var vm = _productDetailsService.Build(id, null, User.IsInRole("Owner"));
 
             return View(vm);
         }

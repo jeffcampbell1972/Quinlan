@@ -25,14 +25,15 @@ namespace Quinlan.MVC.Controllers
         [Authorize]
         public IActionResult Details(int id)
         {
-            var vm = _personDetailsService.Build(id, null);
+            var vm = _personDetailsService.Build(id, null, User.IsInRole("Owner"));
 
             return View(vm);
         }
+        [Authorize]
         [HttpPost]
         public IActionResult Details(int id, CardFilterOptionsViewModel filterOptions)
         {
-            var vm = _personDetailsService.Build(id, filterOptions);
+            var vm = _personDetailsService.Build(id, filterOptions, User.IsInRole("Owner"));
 
             return View(vm);
         }
@@ -43,6 +44,7 @@ namespace Quinlan.MVC.Controllers
 
             return View(peopleVM);
         }
+        [Authorize]
         [HttpPost]
         public IActionResult Index(PersonFilterOptionsViewModel personFilterOptionsViewModel)
         {
@@ -57,6 +59,7 @@ namespace Quinlan.MVC.Controllers
 
             return View(peopleVM);
         }
+        [Authorize(Roles = "Owner")]
         [HttpPost]
         public IActionResult Edit(int id, PersonViewModel personVM)
         {

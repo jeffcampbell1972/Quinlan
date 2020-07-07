@@ -19,7 +19,7 @@ namespace Quinlan.MVC.Services
             _leagueService = leagueService;
             _cardSearchService = cardSearchService;
         }
-        public SportDetails Build(int id, CardFilterOptionsViewModel filterOptionsVM)
+        public SportDetails Build(int id, CardFilterOptionsViewModel filterOptionsVM, bool hasOwnerRights)
         {
             var leagues = _leagueService.Get().Where(x => x.SportId == id).ToList();
             var defaultLeague = leagues.SingleOrDefault(x => x.SportId == id && x.SearchDefault);
@@ -85,6 +85,7 @@ namespace Quinlan.MVC.Services
                 Id = sport.Id ,
                 Identifier = sport.Identifier ,
                 DisplayName = string.Format("{0} Cards", sport.Name) ,
+                HasOwnerRights = hasOwnerRights ,
                 Cards = cards,
                 SearchTotalsVM = new SearchTotalsViewModel
                 {

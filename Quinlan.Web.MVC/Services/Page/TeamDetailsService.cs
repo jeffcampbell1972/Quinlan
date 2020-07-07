@@ -3,6 +3,8 @@
 using Quinlan.MVC.Models;
 using Quinlan.Domain.Models;
 using Quinlan.Domain.Services;
+using Microsoft.AspNetCore.Identity;
+using System.Threading.Tasks;
 
 namespace Quinlan.MVC.Services
 {
@@ -10,12 +12,13 @@ namespace Quinlan.MVC.Services
     {
         ICrudService<Team> _teamService;
         ICollectibleSearchService<CardSearch, CardSearchFilterOptions> _cardSearchService;
+        UserManager<IdentityUser> _userManager;
         public TeamDetailsService(ICrudService<Team> teamService, ICollectibleSearchService<CardSearch, CardSearchFilterOptions> cardSearchService)
         {
             _teamService = teamService;
             _cardSearchService = cardSearchService;
         }
-        public TeamDetails Build(int id, CardFilterOptionsViewModel filterOptionsVM)
+        public TeamDetails Build(int id, CardFilterOptionsViewModel filterOptionsVM, bool hasOwnerRights)
         {
             if (filterOptionsVM == null)
             {
@@ -54,12 +57,14 @@ namespace Quinlan.MVC.Services
                 })
                 .ToList();
 
+            
             var vm = new TeamDetails
             {
                 Id = team.Id,
                 Identifier = team.Identifier ,
                 DisplayName = team.Name,
                 Cards = cards ,
+                HasOwnerRights = hasOwnerRights ,
                 SearchTotalsVM = new SearchTotalsViewModel
                 {
                     NumCollectibles = cardSearch.NumCards,

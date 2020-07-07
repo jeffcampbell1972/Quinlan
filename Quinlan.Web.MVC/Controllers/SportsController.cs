@@ -14,17 +14,18 @@ namespace Quinlan.MVC.Controllers
             _sportDetailsService = sportDetailsService;
         }
 
-        [Authorize(Roles = "Owner")]
+        [Authorize]
         public IActionResult Details(int id)
         {
-            var vm = _sportDetailsService.Build(id, null);
+            var vm = _sportDetailsService.Build(id, null, User.IsInRole("Owner"));
 
             return View(vm);
         }
+        [Authorize]
         [HttpPost]
         public IActionResult Details(int id, CardFilterOptionsViewModel filterOptions)
         {
-            var vm = _sportDetailsService.Build(id, filterOptions);
+            var vm = _sportDetailsService.Build(id, filterOptions, User.IsInRole("Owner"));
 
             return View(vm);
         }

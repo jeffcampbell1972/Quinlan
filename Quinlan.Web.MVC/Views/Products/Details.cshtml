@@ -5,10 +5,20 @@
 }
 
 
-<section id="headerSection">
-    <h1>@Model.DisplayName</h1>
-    <h1>@Model.Price</h1>
-</section>
+    <section id="headerSection">
+        <h1>@Model.DisplayName</h1>
+
+        @if (Model.HasOwnerRights)
+        {
+            <div style="float:left">
+                <a asp-area="" asp-controller="People" asp-action="Edit" asp-route-id=@Model.Id>[Edit]</a>
+            </div>
+        }
+        <div style="float:left">
+            <h3>@Model.Price</h3>
+        </div>
+        <div style="clear:both"></div>
+    </section>
 
 <hr />
 

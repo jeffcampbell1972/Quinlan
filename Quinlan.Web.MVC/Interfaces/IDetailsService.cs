@@ -4,6 +4,6 @@ namespace Quinlan.MVC.Services
 {
     public interface IDetailsService<T>
     {
-        public T Build(int id, CardFilterOptionsViewModel filterOptions);
+        public T Build(int id, CardFilterOptionsViewModel filterOptions, bool hasOwnerRights);
     }
 }

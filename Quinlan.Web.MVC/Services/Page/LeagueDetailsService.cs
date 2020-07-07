@@ -16,7 +16,7 @@ namespace Quinlan.MVC.Services
             _leagueService = leagueService;
             _cardSearchService = cardSearchService;
         }
-        public LeagueDetails Build(int id, CardFilterOptionsViewModel filterOptionsVM)
+        public LeagueDetails Build(int id, CardFilterOptionsViewModel filterOptionsVM, bool hasOwnerRights)
         {
             if (filterOptionsVM == null)
             {

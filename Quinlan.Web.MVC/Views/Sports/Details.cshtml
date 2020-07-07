@@ -56,9 +56,12 @@
             <th class="GradeColumn ColumnHeader">
                 Grade
             </th>
-            <th class="CostColumn ColumnHeader">
-                Cost
-            </th>
+            @if (Model.HasOwnerRights)
+            {
+                <th class="CostColumn ColumnHeader">
+                    Cost
+                </th>
+            }
             <th class="ValueColumn ColumnHeader">
                 Value
             </th>
@@ -98,9 +101,12 @@
                 <td class="GradeColumn">
                     @card.Grade
                 </td>
+                @if (Model.HasOwnerRights)
+                {
                 <td class="CostColumn">
                     @card.FormattedCost
                 </td>
+                }
                 <td class="ValueColumn">
                     @card.FormattedValue
                 </td>

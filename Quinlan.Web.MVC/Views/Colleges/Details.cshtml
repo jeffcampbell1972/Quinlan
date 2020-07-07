@@ -6,15 +6,18 @@
 
 
 
-<section id="headerSection">
-    <h1 style="float:left">@Model.DisplayName</h1>
+    <section id="headerSection">
+        <h1 style="float:left">@Model.DisplayName</h1>
 
-    <div style="float:left">
-        <a asp-area="" asp-controller="Colleges" asp-action="Edit" asp-route-id=@Model.Id>[Edit]</a>
-    </div>
+        @if (Model.HasOwnerRights)
+        {
+            <div style="float:left">
+                <a asp-area="" asp-controller="Colleges" asp-action="Edit" asp-route-id=@Model.Id>[Edit]</a>
+            </div>
+        }
 
-    <div style="clear:both"></div>
-</section>
+        <div style="clear:both"></div>
+    </section>
 
 <section id="filterSection">
 
@@ -64,9 +67,12 @@
             <th class="HOFColumn">
                 Grade
             </th>
-            <th class="CostColumn">
-                Cost
-            </th>
+            @if (Model.HasOwnerRights)
+            {
+                <th class="CostColumn">
+                    Cost
+                </th>
+            }
             <th class="ValueColumn">
                 Value
             </th>
@@ -100,9 +106,12 @@
         <td class="GradeColumn">
             @card.Grade
         </td>
-        <td class="CostColumn">
-            @card.FormattedCost
-        </td>
+        @if (Model.HasOwnerRights)
+        {
+            <td class="CostColumn">
+                @card.FormattedCost
+            </td>
+        }
         <td class="ValueColumn">
             @card.FormattedValue
         </td>

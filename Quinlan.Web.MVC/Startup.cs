@@ -165,6 +165,25 @@ namespace Quinlan.Web.MVC
                 roleResult = await RoleManager.CreateAsync(new IdentityRole("Owner"));
             }
 
+            var jeff = await UserManager.FindByNameAsync("jeff@quinlan.com");
+            if (jeff == null)
+            {
+                var jeffResult = await UserManager.CreateAsync(new IdentityUser
+                {
+                    UserName = "jeff@quinlan.com",
+                    Email = "jeff@quinlan.com",
+                    PasswordHash = "AQAAAAEAACcQAAAAEGuSDVqbXDPUu6upDkeJVCRDk2V1sV1ylJJ8MT5lRN4J/OIPk5I0hi9rwoZ9vIUX1w=="   // P@ssword1
+                });
+                if (jeffResult.Succeeded)
+                {
+                    jeff = await UserManager.FindByNameAsync("jeff@quinlan.com");
+                }
+                else
+                {
+                    return;
+                }
+            }
+
             var susan = await UserManager.FindByNameAsync("susan@quinlan.com");
             if (susan == null)
             {

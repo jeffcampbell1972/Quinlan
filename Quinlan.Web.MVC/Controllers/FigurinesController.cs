@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 using Quinlan.MVC.Models;
 using Quinlan.MVC.Services;
 
 namespace Quinlan.Controllers
 {
+    [Authorize(Roles = "Nobody")]
     public class FigurinesController : Controller
     {
         private static IIndexService<FigurineIndex, FigurineFilterOptionsViewModel> _figurineIndexModelService;

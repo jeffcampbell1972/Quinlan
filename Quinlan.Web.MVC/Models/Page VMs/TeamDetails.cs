@@ -8,6 +8,7 @@ namespace Quinlan.MVC.Models
         public int Id { get; set; }
         public string Identifier { get; set; }
         public string DisplayName { get; set; }
+        public bool HasOwnerRights { get; set; }
         public List<CardListItemViewModel> Cards { get; set; }
         public CardSearchViewModel FilterOptionsVM { get; set; }
         public SearchTotalsViewModel SearchTotalsVM { get; set; }     
