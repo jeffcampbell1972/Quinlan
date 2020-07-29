@@ -10,5 +10,6 @@ namespace Quinlan.MVC.Models
         public int NumCollectibles { get; set; }
         public decimal TotalCost { get; set; }
         public decimal TotalValue { get; set; }
+        public bool ShowTotalCost { get; set; }
     }
 }

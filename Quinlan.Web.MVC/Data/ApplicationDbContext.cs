@@ -11,6 +11,14 @@ namespace Quinlan.Identity.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+            try
+            {
+                Database.ExecuteSqlRaw("select * from ASPNETRoles");
+            }
+            catch
+            {
+                Database.Migrate();
+            }
         }
     }
 }

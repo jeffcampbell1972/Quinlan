@@ -6,10 +6,19 @@
             # of Cards:
             @Model.NumCollectibles.ToString("n0")
         </div>
+       
         <div id="numCards" style="width:33%; float: left; text-align:center">
-            Total Cost:
-            @Model.TotalCost.ToString("c")
+            @if (Model.ShowTotalCost)
+            {
+            <div>Total Cost: @Model.TotalCost.ToString("c")</div>
+            
+            }
+            else
+            {
+               <div>&nbsp;</div>
+            }
         </div>
+        
         <div id="numCards" style="width:33%; float: left; text-align:right">
             Total Value:
             @Model.TotalValue.ToString("c")

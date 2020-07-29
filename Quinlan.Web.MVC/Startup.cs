@@ -39,15 +39,17 @@ namespace Quinlan.Web.MVC
             services.AddControllersWithViews();
             services.AddRazorPages();
 
+            services.AddDbContext<QdbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("QDatabase")));
+
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    Configuration.GetConnectionString("QDatabase")));
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddDbContext<QdbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("QDatabase")));
 
             // Data and Query services required by Domain services
             services.AddScoped<IDataService<Quinlan.Data.Models.Collectible>, CollectibleDataService>();
@@ -143,7 +145,16 @@ namespace Quinlan.Web.MVC
                 endpoints.MapRazorPages();
             });
 
+            CreateDatabase(serviceProvider);
+
             CreateRoles(serviceProvider).Wait();
+        }
+        private void CreateDatabase(IServiceProvider serviceProvider)
+        {
+            // the entity framework is configured to create the database and apply the data model, if the database does not already exist.  
+            // so by calling the product service, this process is triggered
+            var productService = serviceProvider.GetService<IDataService<Quinlan.Data.Models.Collectible>>();
+            var products = productService.Select();
         }
         private async Task CreateRoles(IServiceProvider serviceProvider)
         {
@@ -172,8 +183,9 @@ namespace Quinlan.Web.MVC
                 {
                     UserName = "jeff@quinlan.com",
                     Email = "jeff@quinlan.com",
+                    EmailConfirmed = true , 
                     PasswordHash = "AQAAAAEAACcQAAAAEGuSDVqbXDPUu6upDkeJVCRDk2V1sV1ylJJ8MT5lRN4J/OIPk5I0hi9rwoZ9vIUX1w=="   // P@ssword1
-                });
+                }) ;
                 if (jeffResult.Succeeded)
                 {
                     jeff = await UserManager.FindByNameAsync("jeff@quinlan.com");
@@ -190,7 +202,8 @@ namespace Quinlan.Web.MVC
                 var susanResult = await UserManager.CreateAsync(new IdentityUser 
                 { 
                     UserName = "susan@quinlan.com", 
-                    Email = "susan@quinlan.com" , 
+                    Email = "susan@quinlan.com" ,
+                    EmailConfirmed = true,
                     PasswordHash = "AQAAAAEAACcQAAAAEGuSDVqbXDPUu6upDkeJVCRDk2V1sV1ylJJ8MT5lRN4J/OIPk5I0hi9rwoZ9vIUX1w=="   // P@ssword1
                 });
                 if (susanResult.Succeeded)

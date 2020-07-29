@@ -69,6 +69,7 @@ namespace Quinlan.MVC.Services
                 {
                     NumCollectibles = cardSearch.NumCards,
                     TotalCost = cardSearch.TotalCost,
+                    ShowTotalCost = hasOwnerRights,
                     TotalValue = cardSearch.TotalValue
                 },
 
