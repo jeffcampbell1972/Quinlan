@@ -13,6 +13,7 @@ namespace Quinlan.Data
         public DbSet<CollectibleStatus> CollectibleStatuses { get; set; }
         public DbSet<CollectibleType> CollectibleTypes { get; set; }
         public DbSet<College> Colleges { get; set; }
+        public DbSet<Container> Containers { get; set; }
         public DbSet<Grader> Graders { get; set; }
         public DbSet<Grade> Grades { get; set; }
         public DbSet<ImportCollectible> ImportCollectibles { get; set; }

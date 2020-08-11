@@ -87,6 +87,12 @@ namespace Quinlan.Domain.Services
                     Identifier = collectibleData.Grade.Identifier,
                     Name = collectibleData.Grade.Name
                 },
+                Container = collectibleData.Container == null ? null : new Container
+                {
+                    Id = collectibleData.Container.Id,
+                    Identifier = collectibleData.Container.Identifier,
+                    Name = collectibleData.Container.Name
+                } ,
                 ImportCard = collectibleData.ImportCollectible == null ? null : new ImportCard
                 {
                     Id = collectibleData.ImportCollectible.Id,
@@ -130,14 +136,21 @@ namespace Quinlan.Domain.Services
         {
             var collectibleData = _collectibleDataService.Select(id);
 
-            collectibleData.Year = card.Year;
-            collectibleData.CardNumber = card.CardNumber;
+            if (card.Container == null)
+                collectibleData.ContainerId = null;
+            else
+                collectibleData.ContainerId = card.Container.Id;
 
-            collectibleData.RCFlag = card.RCFlag;
-            collectibleData.AUFlag = card.AUFlag;
-            collectibleData.PatchFlag = card.PatchFlag;
-            collectibleData.GradedFlag = card.GradedFlag;
-            collectibleData.NotableFlag = card.NotableFlag;
+            //collectibleData.Year = card.Year;
+            //collectibleData.CardNumber = card.CardNumber;
+
+            //collectibleData.RCFlag = card.RCFlag;
+            //collectibleData.AUFlag = card.AUFlag;
+            //collectibleData.PatchFlag = card.PatchFlag;
+            //collectibleData.GradedFlag = card.GradedFlag;
+            //collectibleData.NotableFlag = card.NotableFlag;
+            
+            
 
             _collectibleDataService.Update(id, collectibleData);
         }

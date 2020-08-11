@@ -10,6 +10,7 @@ namespace Quinlan.Data.Models
         public int Year { get; set; }
         public int? CardNumber { get; set; }
         public string Condition { get; set; }
+        public string GradingIdentifier { get; set; }
         public bool RCFlag { get; set; }
         public bool SPFlag { get; set; }
         public bool AUFlag { get; set; }
@@ -30,6 +31,7 @@ namespace Quinlan.Data.Models
         public int? SetId { get; set; }
         public int? GradeId { get; set; }
         public int? ProductId { get; set; }
+        public int? ContainerId { get; set; }
 
         public Owner Owner { get; set; }
         public ImportCollectible ImportCollectible { get; set; }
@@ -43,5 +45,6 @@ namespace Quinlan.Data.Models
         public Set Set { get; set; }
         public Grade Grade { get; set; }
         public Product Product { get; set; }
+        public Container Container { get; set; }
     }
 }

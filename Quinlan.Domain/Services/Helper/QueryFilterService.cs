@@ -23,6 +23,7 @@ namespace Quinlan.Domain.Services
                 NotableFlag = cardFilterOptions.NotableFlag,
                 NotablePersonFlag = cardFilterOptions.NotablePersonFlag,
                 CollegeId = cardFilterOptions.CollegeId,
+                ContainerId = cardFilterOptions.ContainerId ,
                 GradedFlag = cardFilterOptions.GradedFlag,
                 HeismanFlag = cardFilterOptions.HeismanFlag,
                 VintageFlag = cardFilterOptions.VintageFlag,
@@ -31,7 +32,8 @@ namespace Quinlan.Domain.Services
                 GradeId = cardFilterOptions.GradeId,
                 ManufacturerId = cardFilterOptions.ManufacturerId ,
                 MinValue = cardFilterOptions.MinValue ,
-                MaxValue = cardFilterOptions.MaxValue
+                MaxValue = cardFilterOptions.MaxValue ,
+                NoContainerFlag = cardFilterOptions.NoContainerFlag
             };
 
             return collectibleFilterOptions;

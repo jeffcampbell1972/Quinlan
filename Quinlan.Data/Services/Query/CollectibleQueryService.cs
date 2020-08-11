@@ -26,6 +26,7 @@ namespace Quinlan.Data.Services
                 .Include(x => x.Team)
                 .Include(x => x.CollectibleType)
                 .Include(x => x.CardType)
+                .Include(x => x.Container)
                 .Where(x =>
                     (filterOptions.ProductId == null || x.ProductId == filterOptions.ProductId) &&
                     (filterOptions.SportId == null || x.SportId == filterOptions.SportId) &&
@@ -33,6 +34,7 @@ namespace Quinlan.Data.Services
                     (filterOptions.TeamId == null || x.TeamId == filterOptions.TeamId) &&
                     (filterOptions.PersonId == null || x.PersonId == filterOptions.PersonId) &&
                     (filterOptions.CollegeId == null || (x.Person != null && x.Person.CollegeId == filterOptions.CollegeId)) &&
+                    (filterOptions.ContainerId == null || x.ContainerId == filterOptions.ContainerId) &&
                     (!filterOptions.HOFFlag || (x.Person != null && x.Person.HOFFlag == true)) &&
                     (!filterOptions.HeismanFlag || (x.Person != null && x.Person.HeismanFlag == true)) &&
                     (!filterOptions.NotablePersonFlag || (x.Person != null && x.Person.NotableFlag == true)) &&
@@ -46,7 +48,8 @@ namespace Quinlan.Data.Services
                     (filterOptions.GraderId == null || (x.Grade != null && x.Grade.GraderId == filterOptions.GraderId)) &&
                     (filterOptions.GradeId == null || (x.Grade != null && x.Grade.Id == filterOptions.GradeId)) &&
                     (filterOptions.MinValue == null || (x.Value >= filterOptions.MinValue)) &&
-                    (filterOptions.MaxValue == null || (x.Value <= filterOptions.MaxValue))
+                    (filterOptions.MaxValue == null || (x.Value <= filterOptions.MaxValue)) &&
+                    (filterOptions.NoContainerFlag == null || filterOptions.NoContainerFlag == false || x.ContainerId == null)
                 )
                 .OrderBy(x => x.Year)
                 .ThenBy(x => x.Set.Name)

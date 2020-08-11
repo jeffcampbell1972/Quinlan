@@ -27,6 +27,7 @@ namespace Quinlan.Domain.Models
         public Team Team { get; set; }
         public ImportCard ImportCard { get; set; }
         public Grade Grade { get; set; }
+        public Container Container { get; set; }
 
         public override string ToString()
         {

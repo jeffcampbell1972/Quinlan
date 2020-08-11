@@ -14,6 +14,7 @@ namespace Quinlan.Domain.Models
         public bool RelicFlag { get; set; }
         public bool AutographedFlag { get; set; }
         public bool VintageFlag { get; set; }
+        public bool? NoContainerFlag { get; set; }
         public int? PersonId { get; set; }
         public int? SportId { get; set; }
         public int? LeagueId { get; set; }
@@ -21,6 +22,7 @@ namespace Quinlan.Domain.Models
         public int? CollegeId { get; set; }
         public int? GraderId { get; set; }
         public int? GradeId { get; set; }
+        public int? ContainerId { get; set; }
         public int? ManufacturerId { get; set; }
         public decimal? MinValue { get; set; }
         public decimal? MaxValue { get; set; }
